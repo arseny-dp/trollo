@@ -1,16 +1,15 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { array, func, object } from 'prop-types';
+import { array, object } from 'prop-types';
 import styles from './board.module.scss';
 
-const Board = props => {
+const BoardLink = props => {
 	const {
 		board,
 		boards,
 		setBoards
 	} = props
 
-	console.log(styles)
 	const deleteBoard = () => {
 		let index = boards.indexOf(board);
 		let newBoards = boards.slice(0, index).concat(boards.slice(index + 1));
@@ -25,11 +24,9 @@ const Board = props => {
 	)
 }
 
-
-Board.propTypes = {
+BoardLink.propTypes = {
 	board: object,
-	boards: array,
-	setBoards: func
+	boards: array
 }
 
-export default Board
+export default BoardLink
