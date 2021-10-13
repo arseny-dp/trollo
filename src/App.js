@@ -1,3 +1,4 @@
+import ErrorBoundary from "components/ErrorBoundry"
 import Layout from "components/Layout"
 import Header from "components/Layout/Header"
 import { BrowserRouter as Router } from "react-router-dom"
@@ -7,12 +8,14 @@ const App = () => {
 
 	return (
 		<>
-			<Router>
-				<Header />
-				<Layout>
-					<Routes />
-				</Layout>
-			</Router>
+			<ErrorBoundary>
+				<Router>
+					<Header />
+					<Layout>
+						<Routes />
+					</Layout>
+				</Router>
+			</ErrorBoundary>
 		</>
 	)
 }
