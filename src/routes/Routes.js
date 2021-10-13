@@ -1,11 +1,11 @@
-import Board from 'pages/Board'
-import Main from 'pages/_Main'
+import BoardPage from 'pages/BoardPage'
+import HomePage from 'pages/HomePage'
 import { Route } from 'react-router'
 
 const Routes = () =>
 	<>
-		<Route exact path='/' component={Main} />
-		<Route exact path='/board/:id' component={Board} />
+		<Route exact path='/' component={HomePage} />
+		<Route exact path='/board/:id' component={BoardPage} />
 		{/* <Route exact path='/' component={App} /> */}
 	</>
 

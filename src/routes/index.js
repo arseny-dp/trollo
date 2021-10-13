@@ -1,3 +1,3 @@
-const { default: Routes } = require("./Routes");
+import Routes from "./Routes"
 
 export default Routes

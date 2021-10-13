@@ -1,5 +1,8 @@
 const initialState = {
-	boards: []
+	boards: [
+		{name: 'qwerty', id: 1},
+		{name: 'asdfgh', id: 2}
+	]
 }
 
 const reducer = (state = initialState, action) => {

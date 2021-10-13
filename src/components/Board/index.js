@@ -29,4 +29,4 @@ BoardLink.propTypes = {
 	boards: array
 }
 
-export default BoardLink
+export default BoardLink;
