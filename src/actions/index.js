@@ -1,10 +1,11 @@
-const addBoard = (name) => {
+export const addBoard = (value) => {
+	let id = Date.now();
+	let name = value || 'Unnamed ' + id;
+
 	return {
 		type: 'ADD_BOARD',
-		payload: name
+		payload: { id, name }
 	};
 };
 
-export {
-	addBoard
-};
+export const deleteBoard = (payload) => ({ type: 'DELETE_BOARD', payload })

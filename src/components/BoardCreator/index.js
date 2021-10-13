@@ -1,23 +1,19 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { addBoard } from 'actions';
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import './style.scss';
 
-const BoardCreator = props => {
-	const {
-		boards,
-		setBoards
-	} = props
+const BoardCreator = ({ addBoard }) => {
 
 	const [value, setValue] = useState('Board');
 	const [isOpened, setIsOpened] = useState(false);
 
 	const closeDropdown = () => setIsOpened(false)
 	const clearInput = () => setValue('');
-	const addBoard = () => {
-		let id = Date.now();
-		let name = value || 'Unnamed ' + id;
-		setBoards([...boards, { id: id, name: name }]);
+	const handler = () => {
+		addBoard(value);
 		clearInput()
 	}
 	const cancel = () => {
@@ -46,7 +42,7 @@ const BoardCreator = props => {
 						value={value} />
 				</label>
 				<div className="board-creator__buttons">
-					<button className='' type='submit' onClick={addBoard} >Сохранить</button>
+					<button className='' type='submit' onClick={handler} >Сохранить</button>
 					<button type='reset' onClick={cancel}>Отмена</button>
 				</div>
 			</div>
@@ -54,8 +50,6 @@ const BoardCreator = props => {
 	)
 }
 
-BoardCreator.propTypes = {
+BoardCreator.propTypes = {}
 
-}
-
-export default BoardCreator
+export default connect(null, { addBoard })(BoardCreator)
