@@ -1,7 +1,6 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { array, func, object } from 'prop-types';
-import React from 'react';
 import styles from './board.module.scss';
 
 const Board = props => {
