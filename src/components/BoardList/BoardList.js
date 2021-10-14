@@ -1,10 +1,11 @@
 import BoardItem from "components/BoardItem";
 import { array } from "prop-types";
 import { connect } from "react-redux";
+import styles from './board-list.module.scss'
 
-const BoardsList = ({ boards }) => {
+const BoardList = ({ boards }) => {
 	return (
-		<div>
+		<div className={styles.body}>
 			{boards.map(e =>
 				<BoardItem key={e.id} board={e} />
 			)}
@@ -12,10 +13,10 @@ const BoardsList = ({ boards }) => {
 	)
 };
 
-BoardsList.propTypes = {
+BoardList.propTypes = {
 	boards: array
 };
 
 const mapState = ({ boards }) => ({ boards });
 
-export default connect(mapState)(BoardsList);
+export default connect(mapState)(BoardList);

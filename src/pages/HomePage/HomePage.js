@@ -1,12 +1,13 @@
 import BoardCreator from "components/BoardCreator";
-import BoardsList from "components/BoardList";
+import BoardList from "components/BoardList";
+import styles from './home-page.module.scss';
 
 const HomePage = (props) => {
 
 	return (
-		<div>
+		<div className={styles.body}>
 			<BoardCreator />
-			<BoardsList />
+			<BoardList />
 		</div>
 	)
 }

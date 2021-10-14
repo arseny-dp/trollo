@@ -1,17 +1,24 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteBoard } from 'actions';
-import { func } from 'prop-types';
-import { object } from 'prop-types';
+import { func, object } from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styles from './board.module.scss';
+import styles from './board-item.module.scss';
 
 const BoardItem = ({ board, deleteBoard }) => {
 	return (
 		<div className={styles.body}>
-			<Link to={`board/${board.id}`}>{board.name}</Link>
-			<FontAwesomeIcon icon={faTrash} onClick={() => deleteBoard(board.id)} />
+			<Link
+				className={styles.link}
+				to={`${board.id}`}>
+					{board.name}
+			</Link>
+			<div className={styles.delete}>
+				<FontAwesomeIcon
+					icon={faTrash}
+					onClick={() => deleteBoard(board.id)} />
+			</div>
 		</div>
 	)
 };

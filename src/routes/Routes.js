@@ -5,11 +5,11 @@ import { Route } from 'react-router';
 const Routes = () =>
 	<>
 		<Route
-			path='/'
+			path='/boards/'
 			component={HomePage}
 			exact />
 		<Route
-			path='/board/:id'
+			path='/boards/:id'
 			component={BoardPage}
 			exact />
 	</>
