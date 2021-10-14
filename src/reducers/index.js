@@ -1,9 +1,9 @@
 const initialState = {
 	boards: [
-		{ id: 1, name: 'qwerty' },
-		{ id: 2, name: 'asdfgh' }
+		{ id: 1, name: 'Board 1' },
+		{ id: 2, name: 'Board 2' }
 	]
-}
+};
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -17,13 +17,13 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case 'DELETE_BOARD':
-			const item = state.boards.find(({id}) => id === action.payload);
-            console.log("🚀 ~ file: index.js ~ line 21 ~ reducer ~ item", item);
+			const item = state.boards.find(({ id }) => id === action.payload);
+			console.log("🚀 ~ file: index.js ~ line 21 ~ reducer ~ item", item);
 			return state;
 
 		default:
 			return state;
 	}
-}
+};
 
-export default reducer
+export default reducer;

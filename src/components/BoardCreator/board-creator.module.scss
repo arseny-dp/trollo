@@ -1,0 +1,34 @@
+.body {
+	width: 200px;
+	background-color: green;
+	border: 2px solid #000;
+}
+.top {
+	border: 1px solid #000;
+	display: flex;
+	padding: 20px;
+	cursor: pointer;
+	color: white;
+}
+.icon {
+	margin-right: 10px;
+}
+.dropdown {
+	background-color: #fff;
+	padding: 20px;
+	display: none;
+	&_opened {
+		display: block;
+	}
+}
+.label {
+	display: flex;
+	flex-direction: column;
+}
+.input {
+	margin-top: 10px;
+}
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}

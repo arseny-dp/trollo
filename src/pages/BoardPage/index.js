@@ -1,11 +1,3 @@
-import { withRouter } from "react-router"
+import BoardPage from "./BoardPage";
 
-const BoardPage = ({match, location, history}) => {
-	return (
-		<>
-		
-		</>
-	)
-}
-
-export default withRouter(BoardPage)
+export default BoardPage;

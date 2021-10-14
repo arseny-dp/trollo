@@ -1,14 +1,3 @@
-import BoardCreator from "components/BoardCreator";
-import BoardsList from "components/BoardList";
-
-const HomePage = (props) => {
-
-	return (
-		<div>
-			<BoardCreator />
-			<BoardsList />
-		</div>
-	)
-}
+import HomePage from "./HomePage";
 
 export default HomePage;

@@ -1,6 +1,8 @@
+import { DEFAULT_BOARD_NAME } from "constants/default";
+
 export const addBoard = (value) => {
-	let id = Date.now();
-	let name = value || 'Unnamed ' + id;
+	const id = Date.now();
+	const name = value || DEFAULT_BOARD_NAME;
 
 	return {
 		type: 'ADD_BOARD',
@@ -8,4 +10,4 @@ export const addBoard = (value) => {
 	};
 };
 
-export const deleteBoard = (payload) => ({ type: 'DELETE_BOARD', payload })
+export const deleteBoard = (payload) => ({ type: 'DELETE_BOARD', payload });

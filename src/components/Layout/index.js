@@ -1,15 +1,3 @@
-import './style.scss';
+import Layout from "./Layout";
 
-const Layout = props => {
-	return (
-		<div className='layout'>
-			{props.children}
-		</div>
-	)
-}
-
-Layout.propTypes = {
-
-}
-
-export default Layout
+export default Layout;

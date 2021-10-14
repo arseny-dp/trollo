@@ -1,13 +1,9 @@
-const Header = props => {
+const Header = () => {
 	return (
 		<div>
-			
+
 		</div>
 	)
-}
+};
 
-Header.propTypes = {
-
-}
-
-export default Header
+export default Header;

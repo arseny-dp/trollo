@@ -1,12 +1,3 @@
-import { Link } from "react-router-dom"
+import Error from "./Error";
 
-const Error = () => {
-	return (
-		<div>
-			<div>Что-то пошло не так</div>
-			<Link to='/'>Вернуться на главную</Link>
-		</div>
-	)
-}
-
-export default Error
+export default Error;
