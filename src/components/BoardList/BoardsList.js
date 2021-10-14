@@ -16,10 +16,6 @@ BoardsList.propTypes = {
 	boards: array
 };
 
-const mapState = ({
-	boards
-}) => ({
-	boards
-});
+const mapState = ({ boards }) => ({ boards });
 
 export default connect(mapState)(BoardsList);

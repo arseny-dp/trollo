@@ -8,7 +8,6 @@ import styles from './board-creator.module.scss';
 
 const BoardCreator = ({ addBoard }) => {
 
-console.log("🚀 ~ file: BoardCreator.js ~ line 8 ~ styles", styles)
 	const [value, setValue] = useState('Board');
 	const [isOpened, setIsOpened] = useState(false);
 

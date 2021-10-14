@@ -1,13 +1,39 @@
-import { DEFAULT_BOARD_NAME } from "constants/default";
+import { DEFAULT_BOARD_NAME, DEFAULT_LIST_NAME, DEFAULT_TASK_NAME } from "constants/default";
+
+const generateId = () => Date.now();
 
 export const addBoard = (value) => {
-	const id = Date.now();
+	const id = generateId();
 	const name = value || DEFAULT_BOARD_NAME;
 
 	return {
-		type: 'ADD_BOARD',
+		type: 'BOARD_ADD',
 		payload: { id, name }
 	};
 };
 
-export const deleteBoard = (payload) => ({ type: 'DELETE_BOARD', payload });
+export const deleteBoard = (payload) => ({ type: 'BOARD_DELETE', payload });
+
+export const addList = (value) => {
+	const id = generateId();
+	const name = value.name || DEFAULT_LIST_NAME;
+	const parentId = value.parentId;
+
+	return {
+		type: 'LIST_ADD',
+		payload: { id, parentId, name }
+	};
+};
+
+export const addTask = (value) => {
+	const id = generateId();
+	const text = value.text || DEFAULT_TASK_NAME;
+	const parentId = value.parentId;
+
+	return {
+		type: 'TASK_ADD',
+		payload: { id, parentId, text, done:false }
+	};
+};
+
+export const toggleTask = (id) => ({type: 'TASK_TOGGLE', payload: id});
