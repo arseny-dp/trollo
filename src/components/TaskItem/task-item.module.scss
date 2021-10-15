@@ -1,3 +1,57 @@
-.done {
-	text-decoration: line-through;
+@import 'styles/theme';
+
+.body {
+	background-color: $green-secondary;
+	transition: all .3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	.text{
+		position: relative;
+		height: 22px;
+		.decore {
+			position: absolute;
+			opacity: .8;
+			width: calc(100% + 10px);
+			height: 2px;
+			top: 50%;
+			left: 50%;
+			transition: transform 0s .5s;
+			transform: translate(-50%, -50%) rotate(var(--rotate));
+			--rotate: 2deg;
+			&::after {
+				position: absolute;
+				content: '';
+				background-color: $gray-accent;
+				height: 100%;
+				width: 100%;
+				transition: all .5s;
+				pointer-events: none;
+				transform-origin: left;
+				transform: scale(var(--scaleX), 1);
+				--scaleX: 0;
+			}
+		}
+	}
+	.check-icon {
+		position: absolute;
+		right: -2px;
+		top: 50%;
+		transform: translateY(-50%);
+		cursor: pointer;
+		transition: all .3s
+	}
+	&.done {
+		background-color: $gray-primary;
+		.text .decore {
+			--rotate: 182deg;
+			&::after {
+				--scaleX: 1;
+			}
+		}
+		.check-icon {
+			color: $gray-secondary;
+		}
+	}
 }

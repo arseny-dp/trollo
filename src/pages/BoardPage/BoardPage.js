@@ -2,13 +2,16 @@ import ListCreator from "components/ListCreator";
 import ListList from "components/ListList";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import styles from './board-page.module.scss';
 
 const BoardPage = ({ board, filteredLists: lists }) => {
 	return (
 		<>
 			{board.name}
+			<div className={styles.wrapper}>
 			<ListList lists={lists} />
-			<ListCreator boardId={board.id}/>
+				<ListCreator boardId={board.id} />
+			</div>
 		</>
 	)
 }
