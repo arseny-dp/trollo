@@ -8,21 +8,25 @@ import styles from './task-item.module.scss';
 const TaskItem = ({ task, toggleTask, index }) => {
 	return (
 		<Draggable draggableId={`task${task.id}`} index={index}>
-			{provider => (
-			<div className={[
-					styles.body,
-					task.done && styles.done
-				].join(' ')}>
-				<span className={styles.text}>
-					<div className={styles.decore} />
-						{task.text}
-				</span>
+			{provided => (
 				<div
-					className={styles["check-icon"]}
-					onClick={() => toggleTask(task.id)}>
-					<FontAwesomeIcon icon={faCheck} />
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
+					className={[
+						styles.body,
+						task.done && styles.done
+					].join(' ')}>
+					<span className={styles.text}>
+						<div className={styles.decore} />
+						{task.text}
+					</span>
+					<div
+						className={styles["check-icon"]}
+						onClick={() => toggleTask(task.id)}>
+						<FontAwesomeIcon icon={faCheck} />
+					</div>
 				</div>
-			</div>
 			)}
 		</Draggable>
 	)

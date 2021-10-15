@@ -19,11 +19,13 @@ const BoardPage = ({ board, filteredLists: lists }) => {
 const mapState = ({ boards, lists }, { match }) => {
 	const { id: boardId } = match.params;
 	const board = boards.find(
-		({ id }) => id === parseInt(boardId)
+		({ id }) => id === +boardId
 	);
+
 	const filteredLists = lists.filter(
-		({ parentId }) => parentId === parseInt(boardId)
+		({ parentId }) => parentId === +boardId
 	);
+
 	return (
 		{ board, filteredLists }
 	)
