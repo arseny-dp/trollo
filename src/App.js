@@ -8,7 +8,7 @@ const App = () => {
 
 	return (
 		<>
-			<ErrorBoundary>
+			{/* <ErrorBoundary> */}
 				<Router>
 					<Header />
 					<Layout>
@@ -17,7 +17,7 @@ const App = () => {
 						</Switch>
 					</Layout>
 				</Router>
-			</ErrorBoundary>
+			{/* </ErrorBoundary> */}
 		</>
 	)
 }

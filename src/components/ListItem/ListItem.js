@@ -10,7 +10,9 @@ const ListItem = ({ list, filteredTasks: tasks }) => {
 			<div className={styles.head}>{list.name}</div>
 			<div className={styles.content}>
 				<TaskCreator listId={list.id} />
-			<TaskList tasks={tasks} />
+				<Droppable droppableId={`list${list.id}`}>
+					{provider => <TaskList tasks={tasks} />}
+				</Droppable>
 			</div>
 		</div>
 	)

@@ -3,8 +3,8 @@ import TaskItem from "components/TaskItem"
 const TaskList = ({tasks}) => {
 	return (
 		<>
-			{tasks.map((e) =>
-				<TaskItem key={e.id} task={e} />
+			{tasks.map((e, i) =>
+				<TaskItem key={e.id} task={e} index={i} />
 			).reverse()}
 		</>
 	)
