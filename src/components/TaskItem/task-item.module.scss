@@ -51,7 +51,7 @@
 	}
 	&.done {
 		background-color: $gray-primary;
-		.text .decore {
+		.text-container .decore {
 			--rotate: 182deg;
 			&::after {
 				--scaleX: 1;
