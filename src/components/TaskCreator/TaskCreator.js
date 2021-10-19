@@ -1,11 +1,12 @@
 import { addTask } from "actions";
+import { DEFAULT_TASK_NAME } from "constants/default";
 import { useState } from "react";
 import { connect } from "react-redux";
 
 const TaskCreator = ({ listId: parentId, addTask }) => {
 
-	const [value, setValue] = useState();
-	const clearInput = () => setValue();
+	const [value, setValue] = useState('');
+	const clearInput = () => setValue('');
 	const handler = () => {
 		addTask({ text: value, parentId });
 		clearInput();
@@ -14,7 +15,7 @@ const TaskCreator = ({ listId: parentId, addTask }) => {
 		<>
 			<input
 				type='text'
-				placeholder='Unnamed'
+				placeholder={`${DEFAULT_TASK_NAME} #`}
 				onChange={e => setValue(e.target.value)}
 				onKeyPress={e => e.key === 'Enter' && handler()}
 				value={value} />

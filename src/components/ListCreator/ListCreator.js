@@ -1,14 +1,15 @@
 import { addList } from "actions";
+import { DEFAULT_LIST_NAME } from "constants/default";
 import { useState } from "react";
 import { connect } from "react-redux";
 import styles from './list-creator.module.scss';
 
 const ListCreator = ({ boardId: parentId, addList }) => {
 
-	const [value, setValue] = useState();
+	const [value, setValue] = useState('');
 	const clearInput = () => setValue('');
 	const handler = () => {
-		addList({text: value, parentId});
+		addList({name: value, parentId});
 		clearInput();
 	}
 	return (
@@ -18,7 +19,7 @@ const ListCreator = ({ boardId: parentId, addList }) => {
 				{/* Название списка */}
 				<input
 					type='text'
-					placeholder='Unnamed'
+					placeholder={`${DEFAULT_LIST_NAME} #`}
 					onChange={e => setValue(e.target.value)}
 					onKeyPress={e => e.key === 'Enter' && handler()}
 					value={value} />

@@ -1,10 +1,9 @@
 import { DEFAULT_BOARD_NAME, DEFAULT_LIST_NAME, DEFAULT_TASK_NAME } from "constants/default";
-
-const generateId = () => Date.now();
+import { boardCounter, listsCounter, tasksCounter } from "utils/closureCounter";
 
 export const addBoard = (value) => {
-	const id = generateId();
-	const name = value || DEFAULT_BOARD_NAME;
+	const id = boardCounter();
+	const name = value || `${DEFAULT_BOARD_NAME} ${id}`;
 
 	return {
 		type: 'BOARD_ADD',
@@ -15,8 +14,8 @@ export const addBoard = (value) => {
 export const deleteBoard = (payload) => ({ type: 'BOARD_DELETE', payload });
 
 export const addList = (value) => {
-	const id = generateId();
-	const name = value.name || DEFAULT_LIST_NAME;
+	const id = listsCounter();
+	const name = value.name || `${DEFAULT_LIST_NAME} ${id}`;
 	const parentId = value.parentId;
 
 	return {
@@ -26,14 +25,14 @@ export const addList = (value) => {
 };
 
 export const addTask = (value) => {
-	const id = generateId();
-	const text = value.text || DEFAULT_TASK_NAME;
+	const id = tasksCounter();
+	const text = value.text || `${DEFAULT_TASK_NAME} ${id}`;
 	const parentId = value.parentId;
 
 	return {
 		type: 'TASK_ADD',
-		payload: { id, parentId, text, done:false }
+		payload: { id, parentId, text, done: false }
 	};
 };
 
-export const toggleTask = (id) => ({type: 'TASK_TOGGLE', payload: id});
+export const toggleTask = (id) => ({ type: 'TASK_TOGGLE', payload: id });
