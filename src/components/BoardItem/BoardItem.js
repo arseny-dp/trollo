@@ -1,23 +1,28 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteBoard } from 'actions';
-import { func, object } from 'prop-types';
-import { connect } from 'react-redux';
+import { object } from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './board-item.module.scss';
 
-const BoardItem = ({ board, deleteBoard }) => {
+const BoardItem = ({ board }) => {
+	const dispatch = useDispatch();
+
 	return (
 		<div className={styles.body}>
 			<Link
 				className={styles.link}
-				to={`${board.id}`}>
-					{board.name}
+				to={`${board.id}`}
+				title={board.name}
+			>
+				{board.name}
 			</Link>
-			<div className={styles.delete}>
-				<FontAwesomeIcon
-					icon={faTrash}
-					onClick={() => deleteBoard(board.id)} />
+			<div
+				className={styles.delete}
+				onClick={() => dispatch(deleteBoard(board.id))}
+			>
+				<FontAwesomeIcon icon={faTrash} />
 			</div>
 		</div>
 	)
@@ -25,9 +30,6 @@ const BoardItem = ({ board, deleteBoard }) => {
 
 BoardItem.propTypes = {
 	board: object,
-	deleteBoard: func
 };
 
-const mapDispatch = { deleteBoard };
-
-export default connect(null, mapDispatch)(BoardItem);
+export default BoardItem;

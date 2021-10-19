@@ -1,9 +1,8 @@
 import TaskCreator from "components/TaskCreator";
 import TaskList from "components/TaskList";
-import { connect } from "react-redux";
 import styles from './list-item.module.scss';
 
-const ListItem = ({ list, filteredTasks: tasks }) => {
+const ListItem = ({ list, tasks }) => {
 	return (
 		<div className={styles.body}>
 			<div className={styles.head}>{list.name}</div>
@@ -15,13 +14,4 @@ const ListItem = ({ list, filteredTasks: tasks }) => {
 	)
 }
 
-const mapState = ({ tasks }, { list }) => {
-	const filteredTasks = tasks.filter(
-		({ parentId }) => parentId === list.id
-	);
-	return (
-		{ filteredTasks }
-	)
-}
-
-export default connect(mapState)(ListItem)
+export default ListItem

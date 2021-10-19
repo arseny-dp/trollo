@@ -7,8 +7,11 @@ import styles from './task-item.module.scss';
 
 const TaskItem = ({ task, toggleTask, index }) => {
 	return (
-		<Draggable draggableId={`task${task.id}`} index={index}>
-			{provided => (
+		<Draggable
+			draggableId={`task${task.id}`}
+			index={index}
+		>
+			{(provided, snapshot) => (
 				<div
 					ref={provided.innerRef}
 					{...provided.draggableProps}

@@ -35,4 +35,11 @@ export const addTask = (value) => {
 	};
 };
 
+export const reorderTask = (sourceId, destId, dest) => {
+	return {
+		type: 'TASK_REORDER',
+		payload: { sourceId, destId, dest }
+	}
+};
+
 export const toggleTask = (id) => ({ type: 'TASK_TOGGLE', payload: id });

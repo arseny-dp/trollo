@@ -5,16 +5,16 @@ import styles from './task-list.module.scss';
 const TaskList = ({ tasks, list }) => {
 	return (
 		<>
-			<Droppable droppableId={`list${list}`}>
-				{provided => (
+			<Droppable droppableId={`${list}`}>
+				{(provided, snapshot) => (
 					<div
-						className={styles.wrapper}
 						ref={provided.innerRef}
+						className={styles.wrapper}
 						{...provided.droppableProps}
 					>
 						{tasks.map((e, i) =>
 							<TaskItem key={e.id} task={e} index={i} />
-						).reverse()}
+						)}
 						{provided.placeholder}
 					</div>
 				)}

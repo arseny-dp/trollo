@@ -1,9 +1,10 @@
 import BoardItem from "components/BoardItem";
-import { array } from "prop-types";
-import { connect } from "react-redux";
-import styles from './board-list.module.scss'
+import { useSelector } from "react-redux";
+import styles from './board-list.module.scss';
 
-const BoardList = ({ boards }) => {
+const BoardList = () => {
+	const boards = useSelector(state => state.boards);
+
 	return (
 		<div className={styles.body}>
 			{boards.map(e =>
@@ -13,10 +14,4 @@ const BoardList = ({ boards }) => {
 	)
 };
 
-BoardList.propTypes = {
-	boards: array
-};
-
-const mapState = ({ boards }) => ({ boards });
-
-export default connect(mapState)(BoardList);
+export default BoardList;
