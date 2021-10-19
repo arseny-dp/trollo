@@ -1,12 +1,26 @@
-@import "styles/extends";
+@import 'styles/theme';
+@import 'styles/extends';
 
 .body {
 	border: 1px solid #000;
 }
 .head {
-	@extend %text-fit;
-	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 20px;
 	border-bottom: 1px solid #000;
+}
+.text {
+	@extend %text-fit;
+}
+.delete {
+	padding: 20px;
+	cursor: pointer;
+	transition: color 0.2s;
+	&:hover {
+		color: $red-main;
+	}
 }
 .content {
 	padding: 10px;

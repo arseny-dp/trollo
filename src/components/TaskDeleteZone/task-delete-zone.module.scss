@@ -1,0 +1,14 @@
+@import 'styles/theme';
+
+.body {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	bottom: 0;
+	padding: 25px;
+	&:hover {
+		color: $red-main;
+	}
+}

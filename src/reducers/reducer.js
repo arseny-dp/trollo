@@ -19,23 +19,30 @@ const initialState = {
 
 const getUpdatedState = (state, tableName, newTableState) => ({ ...state, [tableName]: newTableState });
 
-// const getUpdatedArray = (state, tableName, index, item) => ({});
-
 const getIndexFromId = (table, id) => table.findIndex(({ id: itemId }) => itemId === id);
+
+const getDestinationIndex = (sourceIndex, destId, dest, table) => {
+	if(destId === undefined) return table.length - 1;
+	let result = getIndexFromId(table, destId);
+	if (table[sourceIndex].parentId !== dest && sourceIndex < result) {
+		result--;
+	}
+	return result
+}
 
 const reorderItems = (state, tableName, sourceId, destId, dest) => {
 	if (sourceId === destId) return state;
 	const table = state[tableName];
-	const itemIndex = getIndexFromId(table, sourceId);
-	let newIndex;
+    // console.log("🚀 ~ file: reducer.js ~ line 27 ~ reorderItems ~ table", table)
+	const sourceIndex = getIndexFromId(table, sourceId);
+    // console.log("🚀 ~ file: reducer.js ~ line 30 ~ reorderItems ~ itemIndex", sourceIndex)
+	const destIndex = getDestinationIndex(sourceIndex, destId, dest, table);
+    // console.log("🚀 ~ file: reducer.js ~ line 38 ~ reorderItems ~ newIndex", destIndex)
 	const tableClone = Array.from(table);
-	newIndex = destId === undefined ? tableClone.length - 1 : getIndexFromId(tableClone, destId);
-	const [movedItem] = tableClone.splice(itemIndex, 1);
-	if (movedItem.parentId !== dest && sourceId < destId) {
-		newIndex--;
-	}
+	const [movedItem] = tableClone.splice(sourceIndex, 1);
 	movedItem.parentId = dest;
-	tableClone.splice(newIndex, 0, movedItem);
+	tableClone.splice(destIndex, 0, movedItem);
+    // console.log("🚀 ~ file: reducer.js ~ line 39 ~ reorderItems ~ tableClone", tableClone)
 	return getUpdatedState(state, tableName, tableClone);
 }
 
@@ -97,14 +104,20 @@ const reducer = (state = initialState, action) => {
 		case 'BOARD_ADD':
 			return addElement(state, 'boards', action.payload);
 
-		case 'BOARD_DELETE':
-			return deleteElement(state, 'boards', action.payload);
-
 		case 'LIST_ADD':
 			return addElement(state, 'lists', action.payload);
 
 		case 'TASK_ADD':
 			return addElement(state, 'tasks', action.payload);
+
+		case 'BOARD_DELETE':
+			return deleteElement(state, 'boards', action.payload);
+
+		case 'LIST_DELETE':
+			return deleteElement(state, 'lists', action.payload);
+
+		case 'TASK_DELETE':
+			return deleteElement(state, 'tasks', action.payload);
 
 		case 'TASK_TOGGLE':
 			return modifyElement(state, 'tasks', action.payload, { done: undefined });

@@ -11,8 +11,6 @@ export const addBoard = (value) => {
 	};
 };
 
-export const deleteBoard = (payload) => ({ type: 'BOARD_DELETE', payload });
-
 export const addList = (value) => {
 	const id = listsCounter();
 	const name = value.name || `${DEFAULT_LIST_NAME} ${id}`;
@@ -35,11 +33,17 @@ export const addTask = (value) => {
 	};
 };
 
+export const deleteBoard = (payload) => ({ type: 'BOARD_DELETE', payload });
+
+export const deleteList = (payload) => ({ type: 'LIST_DELETE', payload });
+
+export const deleteTask = (payload) => ({ type: 'TASK_DELETE', payload });
+
+export const toggleTask = (id) => ({ type: 'TASK_TOGGLE', payload: id });
+
 export const reorderTask = (sourceId, destId, dest) => {
 	return {
 		type: 'TASK_REORDER',
 		payload: { sourceId, destId, dest }
 	}
 };
-
-export const toggleTask = (id) => ({ type: 'TASK_TOGGLE', payload: id });

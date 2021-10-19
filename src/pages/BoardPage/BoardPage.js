@@ -27,6 +27,10 @@ const BoardPage = () => {
 		)
 	})
 
+	// const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	dispatch(fetchBoard(params.id));
+	// }, []);
 	useEffect(() => {
 		console.log('page rendered')
 	}, [])
@@ -34,10 +38,7 @@ const BoardPage = () => {
 	return (
 		<>
 			{board.name}
-			<div className={styles.wrapper}>
-				<ListList lists={lists} tasks={tasks} />
-				<ListCreator boardId={board.id} />
-			</div>
+			<ListList board={board} lists={lists} tasks={tasks} />
 		</>
 	)
 }

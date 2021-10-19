@@ -1,9 +1,12 @@
-import { reorderTask } from "actions";
+import { deleteTask, reorderTask } from "actions";
+import ListCreator from "components/ListCreator";
 import ListItem from "components/ListItem";
+import TaskDeleteZone from "components/TaskDeleteZone";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
+import styles from './list-list.module.scss';
 
-const ListList = ({ lists, tasks }) => {
+const ListList = ({ board, lists, tasks }) => {
 	const dispatch = useDispatch();
 
 	const onDragEnd = (result) => {
@@ -11,9 +14,15 @@ const ListList = ({ lists, tasks }) => {
 
 		// dropped outside the list
 		if (!destination) return;
-		const sInd = source.droppableId;
 		const dInd = destination.droppableId;
+		const sInd = source.droppableId;
 		const sId = tasks[sInd][source.index].id;
+
+		if (dInd === 'Delete') {
+			dispatch(deleteTask(sId));
+			return;
+		}
+
 		const dId = tasks[dInd][destination.index] === undefined ? undefined : tasks[dInd][destination.index].id
 
 		dispatch(reorderTask(sId, dId, +dInd));
@@ -21,9 +30,13 @@ const ListList = ({ lists, tasks }) => {
 	return (
 		<>
 			<DragDropContext onDragEnd={onDragEnd}>
-				{lists.map(e =>
-					<ListItem key={e.id} list={e} tasks={tasks[e.id]} />
-				)}
+				<div className={styles.wrapper}>
+					{lists.map(e =>
+						<ListItem key={e.id} list={e} tasks={tasks[e.id]} />
+					)}
+					<ListCreator boardId={board.id} />
+				</div>
+				<TaskDeleteZone />
 			</DragDropContext>
 		</>
 	)
