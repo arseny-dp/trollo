@@ -1,5 +1,7 @@
 .body {
+	box-sizing: content-box;
 	max-width: 1200px;
+	padding: 10px;
 	margin: 0 auto;
 	min-height: calc(100vh - 50px);
 	position: relative;

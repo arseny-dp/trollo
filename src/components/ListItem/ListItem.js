@@ -18,7 +18,7 @@ const ListItem = ({ list, tasks }) => {
 					ref={provided.innerRef}
 				>
 					<div className={styles.head}>
-						<div className={styles.text}>{list.name}</div>
+						<h2 className={styles.text}>{list.name}</h2>
 						<div
 							className={styles.delete}
 							onClick={() => dispatch(deleteList(list.id))}

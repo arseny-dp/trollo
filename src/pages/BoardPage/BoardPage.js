@@ -1,6 +1,7 @@
 import ListList from "components/ListList";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import styles from './board-page.module.scss';
 
 const BoardPage = () => {
 	const { id: boardId } = useParams();
@@ -26,8 +27,13 @@ const BoardPage = () => {
 
 	return (
 		<>
-			{board.name}
-			<ListList board={board} lists={lists} tasks={tasks} />
+			<h1 className={styles.caption}>
+				{board.name}
+			</h1>
+			<ListList
+				board={board}
+				lists={lists}
+				tasks={tasks} />
 		</>
 	)
 }
