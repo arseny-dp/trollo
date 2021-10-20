@@ -63,3 +63,10 @@
 		}
 	}
 }
+.drag-over-delete {
+	opacity: 0.8;
+	&.dropped {
+		opacity: 0;
+	}
+}
+

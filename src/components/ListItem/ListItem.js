@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteList } from "actions";
 import TaskCreator from "components/TaskCreator";
 import TaskList from "components/TaskList";
+import { Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import styles from './list-item.module.scss';
 
@@ -10,21 +11,35 @@ const ListItem = ({ list, tasks }) => {
 	const dispatch = useDispatch();
 
 	return (
-		<div className={styles.body}>
-			<div className={styles.head}>
-				<div className={styles.text}>{list.name}</div>
+		<Droppable droppableId={`${list.id}`}>
+			{(provided, snapshot) => (
 				<div
-					className={styles.delete}
-					onClick={() => dispatch(deleteList(list.id))}
+					className={styles.body}
+					ref={provided.innerRef}
 				>
-					<FontAwesomeIcon icon={faTimesCircle} />
+					<div className={styles.head}>
+						<div className={styles.text}>{list.name}</div>
+						<div
+							className={styles.delete}
+							onClick={() => dispatch(deleteList(list.id))}
+						>
+							<FontAwesomeIcon icon={faTimesCircle} />
+						</div>
+					</div>
+					<div className={[
+						styles.content,
+						snapshot.isDraggingOver ? styles['dragging-over'] : null,
+						snapshot.draggingFromThisWith ? styles['dragging-from-this'] : null
+					].join(' ')}>
+						<TaskCreator listId={list.id} />
+						<div {...provided.droppableProps}>
+							<TaskList tasks={tasks} list={list.id} />
+							{provided.placeholder}
+						</div>
+					</div>
 				</div>
-			</div>
-			<div className={styles.content}>
-				<TaskCreator listId={list.id} />
-				<TaskList tasks={tasks} list={list.id} />
-			</div>
-		</div>
+			)}
+		</Droppable>
 	)
 }
 

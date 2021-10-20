@@ -2,20 +2,19 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addBoard } from 'actions';
 import { DEFAULT_BOARD_NAME } from 'constants/default';
-import { func } from 'prop-types';
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from './board-creator.module.scss';
 
-const BoardCreator = ({ addBoard }) => {
-
+const BoardCreator = () => {
+	const dispatch = useDispatch();
 	const [value, setValue] = useState('');
 	const [isOpened, setIsOpened] = useState(false);
 
 	const closeDropdown = () => setIsOpened(false);
 	const clearInput = () => setValue('');
 	const handler = () => {
-		addBoard(value);
+		dispatch(addBoard(value));
 		clearInput();
 	}
 	const cancel = () => {
@@ -52,8 +51,4 @@ const BoardCreator = ({ addBoard }) => {
 	)
 };
 
-BoardCreator.propTypes = {
-	addBoard: func
-};
-
-export default connect(null, { addBoard })(BoardCreator);
+export default BoardCreator;

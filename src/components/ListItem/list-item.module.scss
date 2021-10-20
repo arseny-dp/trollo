@@ -1,5 +1,5 @@
-@import 'styles/theme';
-@import 'styles/extends';
+@import "styles/theme";
+@import "styles/extends";
 
 .body {
 	border: 1px solid #000;
@@ -26,4 +26,11 @@
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
+	transition: background-color 0.3s;
+}
+.dragging-from-this {
+	background-color: rgba(lightcyan, 0.5);
+}
+.dragging-over {
+	background-color: lightcyan;
 }

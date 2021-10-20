@@ -1,14 +1,15 @@
 import { addTask } from "actions";
 import { DEFAULT_TASK_NAME } from "constants/default";
 import { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const TaskCreator = ({ listId: parentId, addTask }) => {
+const TaskCreator = ({ listId: parentId }) => {
+	const dispatch = useDispatch();
 
 	const [value, setValue] = useState('');
 	const clearInput = () => setValue('');
 	const handler = () => {
-		addTask({ text: value, parentId });
+		dispatch(addTask({ text: value, parentId }));
 		clearInput();
 	}
 	return (
@@ -22,4 +23,4 @@ const TaskCreator = ({ listId: parentId, addTask }) => {
 		</>
 	)
 }
-export default connect(null, { addTask })(TaskCreator)
+export default TaskCreator;

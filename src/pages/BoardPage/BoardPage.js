@@ -1,9 +1,6 @@
-import ListCreator from "components/ListCreator";
 import ListList from "components/ListList";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import styles from './board-page.module.scss';
 
 const BoardPage = () => {
 	const { id: boardId } = useParams();
@@ -26,14 +23,6 @@ const BoardPage = () => {
 			{ board, filteredLists, structuredTasks }
 		)
 	})
-
-	// const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	dispatch(fetchBoard(params.id));
-	// }, []);
-	useEffect(() => {
-		console.log('page rendered')
-	}, [])
 
 	return (
 		<>
