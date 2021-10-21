@@ -1,6 +1,11 @@
 @import 'styles/theme.scss';
 @import 'styles/extends.scss';
 
+
+.body {
+	padding-top: 20px;
+}
+
 .caption {
 	@extend %text-fit;
 	padding: 20px;

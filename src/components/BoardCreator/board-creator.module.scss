@@ -1,14 +1,14 @@
 @import 'styles/theme';
 
 .body {
-	width: 200px;
+	min-width: 300px;
 	background-color: $green-primary;
 	border: 2px solid $black;
-	margin-bottom: 20px;
 }
 .top {
 	border: 1px solid #000;
 	display: flex;
+	justify-content: center;
 	padding: 20px;
 	cursor: pointer;
 	color: $white;
@@ -29,7 +29,7 @@
 	flex-direction: column;
 }
 .input {
-	margin-top: 10px;
+	margin: 10px 0;
 }
 .buttons {
 	display: flex;

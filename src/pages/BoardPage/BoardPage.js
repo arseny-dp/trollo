@@ -26,7 +26,7 @@ const BoardPage = () => {
 	})
 
 	return (
-		<>
+		<div className={styles.body}>
 			<h1 className={styles.caption}>
 				{board.name}
 			</h1>
@@ -34,7 +34,7 @@ const BoardPage = () => {
 				board={board}
 				lists={lists}
 				tasks={tasks} />
-		</>
+		</div>
 	)
 }
 
