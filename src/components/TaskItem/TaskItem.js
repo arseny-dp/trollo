@@ -12,13 +12,13 @@ const TaskItem = ({ task, index }) => {
 		if (!(snapshot.draggingOver === 'Delete' && snapshot.isDropAnimating)) {
 			return style;
 		}
-		const { moveTo, curve, duration } = snapshot.dropAnimation;
+		const { moveTo, duration } = snapshot.dropAnimation;
 		const translate = `translate(calc(${moveTo.x}px - 50%), calc(${moveTo.y}px - 50%))`;
-		const scale = `scale(0.2)`;
+		const scale = `scale(0.2, 1)`;
 		return {
 			...style,
 			transform: `${translate} ${scale}`,
-			transition: `all ${curve} ${duration + 1}s`,
+			transition: `all linear ${duration}s`,
 		};
 	}
 
