@@ -1,3 +1,3 @@
-import BoardCreator from "./BoardCreator";
+import BoardCreator from './BoardCreator'
 
 export default BoardCreator;

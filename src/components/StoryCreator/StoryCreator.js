@@ -1,23 +1,23 @@
-import { addList } from "actions";
-import { DEFAULT_LIST_NAME } from "constants/default";
+import { addStory } from "actions";
+import { DEFAULT_STORY_NAME } from "constants/defaultNames";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import styles from './list-creator.module.scss';
+import styles from './story-creator.module.scss';
 
-const ListCreator = ({ boardId: parentId }) => {
+const StoryCreator = ({ boardId: parentId }) => {
 	const dispatch = useDispatch();
 
 	const [value, setValue] = useState('');
 	const clearInput = () => setValue('');
 	const handler = () => {
-		dispatch(addList({ name: value, parentId }));
+		dispatch(addStory({ name: value, parentId }));
 		clearInput();
 	}
 	return (
 		<div className={styles.body}>
 			<input
 				type='text'
-				placeholder={`${DEFAULT_LIST_NAME} #`}
+				placeholder={`${DEFAULT_STORY_NAME} #`}
 				onChange={e => setValue(e.target.value)}
 				onKeyPress={e => e.key === 'Enter' && handler()}
 				value={value} />
@@ -25,4 +25,4 @@ const ListCreator = ({ boardId: parentId }) => {
 	)
 }
 
-export default ListCreator;
+export default StoryCreator;

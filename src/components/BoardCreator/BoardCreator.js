@@ -1,12 +1,13 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addBoard } from 'actions';
-import { DEFAULT_BOARD_NAME } from 'constants/default';
+import { DEFAULT_BOARD_NAME } from 'constants/defaultNames';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './board-creator.module.scss';
 
 const BoardCreator = () => {
+
 	const dispatch = useDispatch();
 	const [value, setValue] = useState('');
 	const [isOpened, setIsOpened] = useState(false);

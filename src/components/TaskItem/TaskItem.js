@@ -9,18 +9,17 @@ const TaskItem = ({ task, index }) => {
 	const dispatch = useDispatch();
 
 	const getStyle = (style, snapshot) => {
-		// if (!(snapshot.draggingOver === 'Delete' && snapshot.isDropAnimating)) {
-		// 	return style;
-		// }
-		// const { moveTo, curve, duration } = snapshot.dropAnimation;
+		if (!(snapshot.draggingOver === 'Delete' && snapshot.isDropAnimating)) {
+			return style;
+		}
+		const { moveTo, curve, duration } = snapshot.dropAnimation;
 		// const center = Math.floor(document.documentElement.clientWidth / 2);
-		// const translate = `translate(${center}px, ${moveTo.y}px)`;
-		// const scale = `scale(0)`;
+		const translate = `translate(${moveTo.x}px, ${moveTo.y}px)`;
+		const scale = `scale(0)`;
 		return {
 			...style,
-			// opacity: 0,
-			// transform: `${translate} ${scale}`,
-			// transition: `all ${curve} ${duration + 1}s`,
+			transform: `${translate} ${scale}`,
+			transition: `all ${curve} ${duration + 2}s`,
 		};
 	}
 

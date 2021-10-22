@@ -1,19 +1,21 @@
+import actionTypes from "constants/actionTypes";
+
 const initialState = {
 	boards: [
-		{ id: 1, name: 'Board 1' },
-		{ id: 2, name: 'Board 2' }
+		{ id: 1, name: 'Доска 1' },
+		{ id: 2, name: 'Доска 2' }
 	],
-	lists: [
-		{ id: 1, parentId: 1, name: 'List 1' },
-		{ id: 2, parentId: 1, name: 'List 2' },
-		{ id: 3, parentId: 2, name: 'List 3' }
+	stories: [
+		{ id: 1, parentId: 1, name: 'Список 1' },
+		{ id: 2, parentId: 2, name: 'Список 2' },
+		{ id: 3, parentId: 1, name: 'Список 3' }
 	],
 	tasks: [
-		{ id: 1, parentId: 1, text: 'Task 1', done: false },
-		{ id: 2, parentId: 1, text: 'Task 2', done: false },
-		{ id: 3, parentId: 2, text: 'Task 3', done: true },
-		{ id: 4, parentId: 2, text: 'Task 4', done: false },
-		{ id: 5, parentId: 1, text: 'Task 5', done: true }
+		{ id: 1, parentId: 1, text: 'Элемент списка 1', done: false },
+		{ id: 2, parentId: 1, text: 'Элемент списка 2', done: false },
+		{ id: 3, parentId: 2, text: 'Элемент списка 3', done: true },
+		{ id: 4, parentId: 2, text: 'Элемент списка 4', done: false },
+		{ id: 5, parentId: 1, text: 'Элемент списка 5', done: true }
 	]
 };
 
@@ -33,16 +35,12 @@ const getDestinationIndex = (sourceIndex, destId, dest, table) => {
 const reorderItems = (state, tableName, sourceId, destId, dest) => {
 	if (sourceId === destId) return state;
 	const table = state[tableName];
-    // console.log("🚀 ~ file: reducer.js ~ line 27 ~ reorderItems ~ table", table)
 	const sourceIndex = getIndexFromId(table, sourceId);
-    // console.log("🚀 ~ file: reducer.js ~ line 30 ~ reorderItems ~ itemIndex", sourceIndex)
 	const destIndex = getDestinationIndex(sourceIndex, destId, dest, table);
-    // console.log("🚀 ~ file: reducer.js ~ line 38 ~ reorderItems ~ newIndex", destIndex)
 	const tableClone = Array.from(table);
 	const [movedItem] = tableClone.splice(sourceIndex, 1);
 	movedItem.parentId = dest;
 	tableClone.splice(destIndex, 0, movedItem);
-    // console.log("🚀 ~ file: reducer.js ~ line 39 ~ reorderItems ~ tableClone", tableClone)
 	return getUpdatedState(state, tableName, tableClone);
 }
 
@@ -51,10 +49,9 @@ const modifyElement = (state, tableName, id, changes) => {
 	const itemIndex = getIndexFromId(table, id);
 	let newItem = table[itemIndex];
 
-	Object.entries(changes).map(([key, value]) => {
+	Object.entries(changes).forEach(([key, value]) => {
 		let newValue = value ? value : !newItem[key];
 		newItem = { ...newItem, [key]: newValue };
-		return {}
 	})
 
 	return getUpdatedState(
@@ -75,13 +72,13 @@ const addElement = (state, tableName, item) => {
 
 const deleteElement = (state, tableName, id, index) => {
 	if (tableName === 'boards')
-		state.lists.forEach((e, i) => {
+		state.stories.forEach((e, i) => {
 			if (e.parentId === id) {
-				state = deleteElement(state, 'lists', e.id, i)
+				state = deleteElement(state, 'lisstoriests', e.id, i)
 			}
 		});
 
-	if (tableName === 'lists')
+	if (tableName === 'stories')
 		state.tasks.forEach((e, i) => {
 			if (e.parentId === id) {
 				state = deleteElement(state, 'tasks', e.id, i)
@@ -101,28 +98,28 @@ const reducer = (state = initialState, action) => {
 	console.log(action.type)
 
 	switch (action.type) {
-		case 'BOARD_ADD':
+		case actionTypes.board.add:
 			return addElement(state, 'boards', action.payload);
 
-		case 'LIST_ADD':
-			return addElement(state, 'lists', action.payload);
+		case actionTypes.story.add:
+			return addElement(state, 'stories', action.payload);
 
-		case 'TASK_ADD':
+		case actionTypes.task.add:
 			return addElement(state, 'tasks', action.payload);
 
-		case 'BOARD_DELETE':
+		case actionTypes.board.delete:
 			return deleteElement(state, 'boards', action.payload);
 
-		case 'LIST_DELETE':
-			return deleteElement(state, 'lists', action.payload);
+		case actionTypes.story.delete:
+			return deleteElement(state, 'stories', action.payload);
 
-		case 'TASK_DELETE':
+		case actionTypes.task.delete:
 			return deleteElement(state, 'tasks', action.payload);
 
-		case 'TASK_TOGGLE':
+		case actionTypes.task.toggle:
 			return modifyElement(state, 'tasks', action.payload, { done: undefined });
 
-		case 'TASK_REORDER':
+		case actionTypes.task.reorder:
 			return reorderItems(state, 'tasks', action.payload.sourceId, action.payload.destId, action.payload.dest);
 
 		default:

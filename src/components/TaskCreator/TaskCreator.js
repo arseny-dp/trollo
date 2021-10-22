@@ -1,9 +1,9 @@
 import { addTask } from "actions";
-import { DEFAULT_TASK_NAME } from "constants/default";
+import { DEFAULT_TASK_NAME } from "constants/defaultNames";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-const TaskCreator = ({ listId: parentId }) => {
+const TaskCreator = ({ parentId }) => {
 	const dispatch = useDispatch();
 
 	const [value, setValue] = useState('');

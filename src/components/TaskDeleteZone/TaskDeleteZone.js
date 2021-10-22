@@ -16,6 +16,7 @@ const TaskDeleteZone = ({hidden}) => {
 				].join(' ')}
 				{...provided.droppableProps}
 			>
+				{/* <div></div> */}
 				{provided.placeholder}
 				<FontAwesomeIcon
 					icon={faTrashAlt}

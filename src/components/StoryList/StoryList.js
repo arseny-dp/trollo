@@ -1,13 +1,13 @@
 import { deleteTask, reorderTask } from "actions";
-import ListCreator from "components/ListCreator";
-import ListItem from "components/ListItem";
+import StoryCreator from "components/StoryCreator";
+import StoryItem from "components/StoryItem";
 import TaskDeleteZone from "components/TaskDeleteZone";
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import styles from './list-list.module.scss';
+import styles from './story-list.module.scss';
 
-const ListList = ({ board, lists, tasks }) => {
+const StoryList = ({ board, stories, tasks }) => {
 	const dispatch = useDispatch();
 	const [isDraggingNow, setIsDraggingNow] = useState(false);
 
@@ -43,10 +43,10 @@ const ListList = ({ board, lists, tasks }) => {
 				onDragStart={onDragStart}
 			>
 				<div className={styles.wrapper}>
-					{lists.map(e =>
-						<ListItem key={e.id} list={e} tasks={tasks[e.id]} />
+					{stories.map(e =>
+						<StoryItem key={e.id} story={e} tasks={tasks[e.id]} />
 					)}
-					<ListCreator boardId={board.id} />
+					<StoryCreator boardId={board.id} />
 				</div>
 				<TaskDeleteZone hidden={!isDraggingNow}/>
 			</DragDropContext>
@@ -54,4 +54,4 @@ const ListList = ({ board, lists, tasks }) => {
 	)
 }
 
-export default ListList
+export default StoryList

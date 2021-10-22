@@ -5,7 +5,7 @@ const TaskList = ({ tasks }) => {
 	return (
 		<>
 			<div
-				className={[styles.wrapper].join(' ')}
+				className={styles.wrapper}
 			>
 				{tasks.map((e, i) =>
 					<TaskItem key={e.id} task={e} index={i} />
