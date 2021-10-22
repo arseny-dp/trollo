@@ -48,10 +48,10 @@ const StoryList = ({ board, stories, tasks }) => {
 					)}
 					<StoryCreator boardId={board.id} />
 				</div>
-				<TaskDeleteZone hidden={!isDraggingNow}/>
+				<TaskDeleteZone show={isDraggingNow} />
 			</DragDropContext>
 		</>
 	)
 }
 
-export default StoryList
+export default StoryList;

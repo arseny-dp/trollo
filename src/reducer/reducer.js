@@ -1,4 +1,4 @@
-import actionTypes from "constants/actionTypes";
+import ACTION_TYPES from "constants/actionTypes";
 
 const initialState = {
 	boards: [
@@ -16,7 +16,11 @@ const initialState = {
 		{ id: 3, parentId: 2, text: 'Элемент списка 3', done: true },
 		{ id: 4, parentId: 2, text: 'Элемент списка 4', done: false },
 		{ id: 5, parentId: 1, text: 'Элемент списка 5', done: true }
-	]
+	],
+	tableChild: {
+		boards: 'stories',
+		stories: 'tasks'
+	}
 };
 
 const getUpdatedState = (state, tableName, newTableState) => ({ ...state, [tableName]: newTableState });
@@ -24,7 +28,7 @@ const getUpdatedState = (state, tableName, newTableState) => ({ ...state, [table
 const getIndexFromId = (table, id) => table.findIndex(({ id: itemId }) => itemId === id);
 
 const getDestinationIndex = (sourceIndex, destId, dest, table) => {
-	if(destId === undefined) return table.length - 1;
+	if (destId === undefined) return table.length - 1;
 	let result = getIndexFromId(table, destId);
 	if (table[sourceIndex].parentId !== dest && sourceIndex < result) {
 		result--;
@@ -71,22 +75,18 @@ const addElement = (state, tableName, item) => {
 };
 
 const deleteElement = (state, tableName, id, index) => {
-	if (tableName === 'boards')
-		state.stories.forEach((e, i) => {
+	const childTable = state.tableChild[tableName];
+	if (childTable) {
+		state[childTable].forEach((e, i) => {
 			if (e.parentId === id) {
-				state = deleteElement(state, 'lisstoriests', e.id, i)
+				state = deleteElement(state, childTable, e.id, i)
 			}
-		});
-
-	if (tableName === 'stories')
-		state.tasks.forEach((e, i) => {
-			if (e.parentId === id) {
-				state = deleteElement(state, 'tasks', e.id, i)
-			}
-		});
+		})
+	}
 
 	const table = state[tableName];
 	const itemIndex = index ? index : getIndexFromId(table, id);
+
 	return getUpdatedState(
 		state,
 		tableName,
@@ -98,28 +98,28 @@ const reducer = (state = initialState, action) => {
 	console.log(action.type)
 
 	switch (action.type) {
-		case actionTypes.board.add:
+		case ACTION_TYPES.board.add:
 			return addElement(state, 'boards', action.payload);
 
-		case actionTypes.story.add:
+		case ACTION_TYPES.story.add:
 			return addElement(state, 'stories', action.payload);
 
-		case actionTypes.task.add:
+		case ACTION_TYPES.task.add:
 			return addElement(state, 'tasks', action.payload);
 
-		case actionTypes.board.delete:
+		case ACTION_TYPES.board.delete:
 			return deleteElement(state, 'boards', action.payload);
 
-		case actionTypes.story.delete:
+		case ACTION_TYPES.story.delete:
 			return deleteElement(state, 'stories', action.payload);
 
-		case actionTypes.task.delete:
+		case ACTION_TYPES.task.delete:
 			return deleteElement(state, 'tasks', action.payload);
 
-		case actionTypes.task.toggle:
+		case ACTION_TYPES.task.toggle:
 			return modifyElement(state, 'tasks', action.payload, { done: undefined });
 
-		case actionTypes.task.reorder:
+		case ACTION_TYPES.task.reorder:
 			return reorderItems(state, 'tasks', action.payload.sourceId, action.payload.destId, action.payload.dest);
 
 		default:

@@ -13,13 +13,12 @@ const TaskItem = ({ task, index }) => {
 			return style;
 		}
 		const { moveTo, curve, duration } = snapshot.dropAnimation;
-		// const center = Math.floor(document.documentElement.clientWidth / 2);
-		const translate = `translate(${moveTo.x}px, ${moveTo.y}px)`;
-		const scale = `scale(0)`;
+		const translate = `translate(calc(${moveTo.x}px - 50%), calc(${moveTo.y}px - 50%))`;
+		const scale = `scale(0.2)`;
 		return {
 			...style,
 			transform: `${translate} ${scale}`,
-			transition: `all ${curve} ${duration + 2}s`,
+			transition: `all ${curve} ${duration + 1}s`,
 		};
 	}
 

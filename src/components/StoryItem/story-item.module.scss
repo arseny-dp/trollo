@@ -23,15 +23,3 @@
 		color: $red-main;
 	}
 }
-.content {
-	padding: 10px;
-	display: grid;
-	// gap: 10px;
-	transition: background-color 0.3s;
-}
-.dragging-from-this {
-	background-color: rgba(lightcyan, 0.5);
-}
-.dragging-over {
-	background-color: lightcyan;
-}

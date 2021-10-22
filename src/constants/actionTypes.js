@@ -1,4 +1,4 @@
-const actionTypes = {
+const ACTION_TYPES = {
 	board: {
 		add: 'BOARD_ADD',
 		delete: 'BOARD_DELETE',
@@ -15,4 +15,4 @@ const actionTypes = {
 	}
 };
 
-export default actionTypes;
+export default ACTION_TYPES;

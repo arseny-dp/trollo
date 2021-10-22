@@ -1,4 +1,4 @@
-import actionTypes from "constants/actionTypes";
+import ACTION_TYPES from "constants/actionTypes";
 import { DEFAULT_BOARD_NAME, DEFAULT_STORY_NAME, DEFAULT_TASK_NAME } from "constants/defaultNames";
 import { boardCounter, storiesCounter, tasksCounter } from "utils/closureCounter";
 
@@ -7,7 +7,7 @@ export const addBoard = (value) => {
 	const name = value || `${DEFAULT_BOARD_NAME} ${id}`;
 
 	return {
-		type: actionTypes.board.add,
+		type: ACTION_TYPES.board.add,
 		payload: { id, name }
 	};
 };
@@ -18,7 +18,7 @@ export const addStory = (value) => {
 	const parentId = value.parentId;
 
 	return {
-		type: actionTypes.story.add,
+		type: ACTION_TYPES.story.add,
 		payload: { id, parentId, name }
 	};
 };
@@ -29,22 +29,32 @@ export const addTask = (value) => {
 	const parentId = value.parentId;
 
 	return {
-		type: actionTypes.task.add,
+		type: ACTION_TYPES.task.add,
 		payload: { id, parentId, text, done: false }
 	};
 };
 
-export const deleteBoard = (payload) => ({ type: actionTypes.board.delete, payload });
+export const deleteBoard = (payload) => ({
+	type: ACTION_TYPES.board.delete,
+	payload
+});
 
-export const deleteStory = (payload) => ({ type: actionTypes.story.delete, payload });
+export const deleteStory = (payload) => ({
+	type: ACTION_TYPES.story.delete,
+	payload
+});
 
-export const deleteTask = (payload) => ({ type: actionTypes.task.delete, payload });
+export const deleteTask = (payload) => ({
+	type: ACTION_TYPES.task.delete,
+	payload
+});
 
-export const toggleTask = (id) => ({ type: actionTypes.task.toggle, payload: id });
+export const toggleTask = (id) => ({
+	type: ACTION_TYPES.task.toggle,
+	payload: id
+});
 
-export const reorderTask = (sourceId, destId, dest) => {
-	return {
-		type: actionTypes.task.reorder,
-		payload: { sourceId, destId, dest }
-	}
-};
+export const reorderTask = (sourceId, destId, dest) => ({
+	type: ACTION_TYPES.task.reorder,
+	payload: { sourceId, destId, dest }
+});
