@@ -1,0 +1,13 @@
+@import "styles/theme.scss";
+@import "styles/extends.scss";
+
+.caption {
+	@extend %text-fit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80px;
+	background-color: $green-primary;
+	text-align: center;
+	margin: 0 0 20px;
+}

@@ -1,0 +1,6 @@
+@import "styles/extends";
+
+.caption {
+	@extend %text-fit;
+	margin: 0;
+}

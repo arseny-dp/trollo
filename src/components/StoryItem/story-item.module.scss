@@ -1,20 +1,15 @@
 @import "styles/theme";
-@import "styles/extends";
 
 .body {
 	border: 1px solid #000;
 }
+
 .head {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding-left: 20px;
 	border-bottom: 1px solid #000;
-}
-
-.caption {
-	@extend %text-fit;
-	margin: 0;
 }
 
 .delete {
