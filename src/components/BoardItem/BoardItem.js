@@ -1,7 +1,6 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteBoard } from 'actions';
-import { object } from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './board-item.module.scss';
@@ -26,10 +25,6 @@ const BoardItem = ({ board }) => {
 			</div>
 		</div>
 	)
-};
-
-BoardItem.propTypes = {
-	board: object,
 };
 
 export default BoardItem;

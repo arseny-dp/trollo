@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from 'store';
 import 'styles/base.scss';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -14,4 +13,3 @@ ReactDOM.render(
 	</React.StrictMode>,
 	document.getElementById('root')
 );
-reportWebVitals();
