@@ -6,5 +6,7 @@ export {
 	deleteStory,
 	deleteTask,
 	reorderTask,
-	toggleTask
+	toggleTask,
+	storyRename,
+	boardRename
 } from './actions.js';

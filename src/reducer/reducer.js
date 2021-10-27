@@ -124,6 +124,12 @@ const reducer = (state = initialState, action) => {
 		case ACTION_TYPES.task.reorder:
 			return reorderItems(state, 'tasks', action.payload.sourceId, action.payload.destInd, action.payload.dest);
 
+		case ACTION_TYPES.story.rename:
+			return modifyElement(state, 'stories', action.payload.id, { name: action.payload.name });
+
+		case ACTION_TYPES.board.rename:
+			return modifyElement(state, 'boards', action.payload.id, { name: action.payload.name });
+
 		default:
 			return state;
 	}

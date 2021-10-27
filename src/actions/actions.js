@@ -58,3 +58,19 @@ export const reorderTask = (sourceId, destInd, dest) => ({
 	type: ACTION_TYPES.task.reorder,
 	payload: { sourceId, destInd, dest }
 });
+
+export const storyRename = (id, newName) => {
+	const name = newName || `${DEFAULT_STORY_NAME} ${id}`;
+	return {
+		type: ACTION_TYPES.story.rename,
+		payload: { id, name }
+	};
+};
+
+export const boardRename = (id, newName) => {
+	const name = newName || `${DEFAULT_BOARD_NAME} ${id}`;
+	return {
+		type: ACTION_TYPES.board.rename,
+		payload: { id, name }
+	};
+};

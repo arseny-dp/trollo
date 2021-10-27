@@ -1,6 +1,5 @@
-@import 'styles/theme.scss';
-@import 'styles/extends.scss';
-
+@import "styles/theme.scss";
+@import "styles/extends.scss";
 
 .body {
 	padding-top: 20px;
@@ -8,7 +7,10 @@
 
 .caption {
 	@extend %text-fit;
-	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80px;
 	background-color: $green-primary;
 	text-align: center;
 	margin: 0 0 20px;
