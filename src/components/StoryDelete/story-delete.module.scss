@@ -1,0 +1,10 @@
+@import "styles/theme";
+
+.delete {
+	padding: 20px;
+	cursor: pointer;
+	transition: color 0.2s;
+	&:hover {
+		color: $red-main;
+	}
+}
