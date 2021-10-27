@@ -2,39 +2,40 @@ import { deleteTask, reorderTask } from "actions";
 import StoryCreator from "components/StoryCreator";
 import StoryItem from "components/StoryItem";
 import TaskDeleteZone from "components/TaskDeleteZone";
+import useStoriesByBoard from "hooks/useStoriesByBoard";
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import styles from './story-list.module.scss';
 
-const StoryList = ({ board, stories, tasks }) => {
+const StoryList = ({ parentId }) => {
 	const dispatch = useDispatch();
 	const [isDraggingNow, setIsDraggingNow] = useState(false);
+	const stories = useStoriesByBoard(parentId)
 
 	const onDragEnd = (result) => {
 		setIsDraggingNow(false);
 
-		const { source, destination } = result;
+		const { source, destination, draggableId } = result;
 
-		// dropped outside the list
-		if (!destination) return;
-		const dInd = destination.droppableId;
-		const sInd = source.droppableId;
-		const sId = tasks[sInd][source.index].id;
+		if (!destination) return; // dropped outside the list
+		if (source.index === destination.index && source.droppableId === destination.droppableId) return; // nothing has changed
 
-		if (dInd === 'Delete') {
+		const sId = +draggableId;
+
+		if (draggableId === 'Delete') {
 			dispatch(deleteTask(sId));
 			return;
 		}
 
-		const dId = tasks[dInd][destination.index] === undefined ? undefined : tasks[dInd][destination.index].id
+		const dest = +destination.droppableId;
+		const dInd = +destination.index;
 
-		dispatch(reorderTask(sId, dId, +dInd));
+
+		dispatch(reorderTask(sId, dInd, dest));
 	};
 
-	const onDragStart = () => {
-		setIsDraggingNow(true);
-	}
+	const onDragStart = () => setIsDraggingNow(true)
 
 	return (
 		<>
@@ -43,10 +44,10 @@ const StoryList = ({ board, stories, tasks }) => {
 				onDragStart={onDragStart}
 			>
 				<div className={styles.wrapper}>
-					{stories.map(e =>
-						<StoryItem key={e.id} story={e} tasks={tasks[e.id]} />
+					{stories.map(story =>
+						<StoryItem key={story.id} story={story} />
 					)}
-					<StoryCreator boardId={board.id} />
+					<StoryCreator boardId={parentId} />
 				</div>
 				<TaskDeleteZone show={isDraggingNow} />
 			</DragDropContext>

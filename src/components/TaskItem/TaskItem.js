@@ -24,7 +24,7 @@ const TaskItem = ({ task, index }) => {
 
 	return (
 		<Draggable
-			draggableId={`task${task.id}`}
+			draggableId={`${task.id}`}
 			index={index}
 		>
 			{(provided, snapshot) => (
@@ -43,7 +43,7 @@ const TaskItem = ({ task, index }) => {
 					<span className={styles['text-container']}>
 						<div className={styles.decore} />
 						<div className={styles.text}>
-							{task.text}
+							{task.name}
 						</div>
 					</span>
 					<div

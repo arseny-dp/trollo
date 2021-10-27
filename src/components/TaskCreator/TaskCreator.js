@@ -9,7 +9,7 @@ const TaskCreator = ({ parentId }) => {
 	const [value, setValue] = useState('');
 	const clearInput = () => setValue('');
 	const handler = () => {
-		dispatch(addTask({ text: value, parentId }));
+		dispatch(addTask({ name: value, parentId }));
 		clearInput();
 	}
 	return (

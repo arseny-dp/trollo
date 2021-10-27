@@ -11,11 +11,11 @@ const initialState = {
 		{ id: 3, parentId: 1, name: 'Список 3' }
 	],
 	tasks: [
-		{ id: 1, parentId: 1, text: 'Элемент списка 1', done: false },
-		{ id: 2, parentId: 1, text: 'Элемент списка 2', done: false },
-		{ id: 3, parentId: 2, text: 'Элемент списка 3', done: true },
-		{ id: 4, parentId: 2, text: 'Элемент списка 4', done: false },
-		{ id: 5, parentId: 1, text: 'Элемент списка 5', done: true }
+		{ id: 1, parentId: 1, name: 'Элемент списка 1', done: false },
+		{ id: 2, parentId: 1, name: 'Элемент списка 2', done: false },
+		{ id: 3, parentId: 2, name: 'Элемент списка 3', done: true },
+		{ id: 4, parentId: 2, name: 'Элемент списка 4', done: false },
+		{ id: 5, parentId: 1, name: 'Элемент списка 5', done: true }
 	],
 	tableChild: {
 		boards: 'stories',
@@ -27,24 +27,26 @@ const getUpdatedState = (state, tableName, newTableState) => ({ ...state, [table
 
 const getIndexFromId = (table, id) => table.findIndex(({ id: itemId }) => itemId === id);
 
-const getDestinationIndex = (sourceIndex, destId, dest, table) => {
-	if (destId === undefined) return table.length - 1;
-	let result = getIndexFromId(table, destId);
-	if (table[sourceIndex].parentId !== dest && sourceIndex < result) {
-		result--;
-	}
-	return result
+const getDestinationIndex = (destInd, dest, table) => {
+	let ind = destInd;
+	let moveTo = table.findIndex(({ parentId }, i) => {
+		const isCurrentTable = parentId === dest;
+		let check = (isCurrentTable && i === ind);
+		if (!isCurrentTable) ind++;
+		return check;
+	});
+	if (moveTo < 0) moveTo = table.length;
+	return moveTo;
 }
 
-const reorderItems = (state, tableName, sourceId, destId, dest) => {
-	if (sourceId === destId) return state;
+const reorderItems = (state, tableName, sourceId, destInd, dest) => {
 	const table = state[tableName];
 	const sourceIndex = getIndexFromId(table, sourceId);
-	const destIndex = getDestinationIndex(sourceIndex, destId, dest, table);
 	const tableClone = Array.from(table);
 	const [movedItem] = tableClone.splice(sourceIndex, 1);
+	const moveTo = getDestinationIndex(destInd, dest, tableClone);
 	movedItem.parentId = dest;
-	tableClone.splice(destIndex, 0, movedItem);
+	tableClone.splice(moveTo, 0, movedItem);
 	return getUpdatedState(state, tableName, tableClone);
 }
 
@@ -120,7 +122,7 @@ const reducer = (state = initialState, action) => {
 			return modifyElement(state, 'tasks', action.payload, { done: undefined });
 
 		case ACTION_TYPES.task.reorder:
-			return reorderItems(state, 'tasks', action.payload.sourceId, action.payload.destId, action.payload.dest);
+			return reorderItems(state, 'tasks', action.payload.sourceId, action.payload.destInd, action.payload.dest);
 
 		default:
 			return state;

@@ -25,12 +25,12 @@ export const addStory = (value) => {
 
 export const addTask = (value) => {
 	const id = tasksCounter();
-	const text = value.text || `${DEFAULT_TASK_NAME} ${id}`;
+	const name = value.name || `${DEFAULT_TASK_NAME} ${id}`;
 	const parentId = value.parentId;
 
 	return {
 		type: ACTION_TYPES.task.add,
-		payload: { id, parentId, text, done: false }
+		payload: { id, parentId, name, done: false }
 	};
 };
 
@@ -54,7 +54,7 @@ export const toggleTask = (id) => ({
 	payload: id
 });
 
-export const reorderTask = (sourceId, destId, dest) => ({
+export const reorderTask = (sourceId, destInd, dest) => ({
 	type: ACTION_TYPES.task.reorder,
-	payload: { sourceId, destId, dest }
+	payload: { sourceId, destInd, dest }
 });

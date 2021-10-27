@@ -5,8 +5,7 @@ import TaskList from "components/TaskList";
 import { useDispatch } from "react-redux";
 import styles from './story-item.module.scss';
 
-const StoryItem = ({ story, tasks }) => {
-
+const StoryItem = ({ story }) => {
 	const dispatch = useDispatch();
 
 	return (
@@ -22,10 +21,7 @@ const StoryItem = ({ story, tasks }) => {
 					<FontAwesomeIcon icon={faTimesCircle} />
 				</div>
 			</div>
-			<TaskList
-				tasks={tasks}
-				parentId={story.id}
-			/>
+			<TaskList parentId={story.id} />
 		</div>
 	)
 }
