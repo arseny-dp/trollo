@@ -1,9 +1,12 @@
 @import "styles/theme";
 
 .delete {
-	padding: 20px;
+	display: flex;
+	align-items: center;
+	padding: 0 20px;
 	cursor: pointer;
 	transition: color 0.2s;
+	align-self: stretch;
 	&:hover {
 		color: $red-main;
 	}

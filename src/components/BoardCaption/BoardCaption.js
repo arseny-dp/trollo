@@ -11,9 +11,11 @@ const BoardCaption = ({ id }) => {
 
 	return (
 		<h1 className={styles.caption}>
-			<EditableCaption
-				value={board.name}
-				handler={renameHandler} />
+			<div>
+				<EditableCaption
+					value={board.name}
+					handler={renameHandler} />
+			</div>
 		</h1>
 	)
 }

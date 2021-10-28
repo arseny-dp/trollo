@@ -1,0 +1,11 @@
+@import "styles/theme.scss";
+
+.body {
+	display: flex;
+	text-align: center;
+	height: 32px;
+	border: 1px solid $gray-secondary;
+	& > * {
+		flex: 1;
+	}
+}

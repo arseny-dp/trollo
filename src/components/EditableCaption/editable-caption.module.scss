@@ -1,8 +1,11 @@
 @import "styles/theme.scss";
+@import "styles/extends.scss";
 
 .input {
 	transition: background-color 0.3s;
 	padding: 0.1em 0.2em;
+	@extend %text-fit;
+	max-width: 100%;
 	&:hover {
 		background-color: rgba($black, 0.1);
 	}
