@@ -2,40 +2,43 @@ import { useEffect, useRef, useState } from "react";
 import styles from './editable-caption.module.scss';
 
 const EditableCaption = (props) => {
-	const { value = '', handler, placeholder = '' } = props;
+	const { value, handler, placeholder = '' } = props;
+	const create = !value;
 
 	const [inputValue, setInputValue] = useState(value);
 	const [saved, setSaved] = useState(false);
 	const [error, setError] = useState(false);
 
-	const input = useRef();
+	const enter = useRef(false);
 
-	const enterHandler = () => {
-		if (inputValue === value) {
-			return;
-		};
-		if (inputValue === '') {
+	const keyPressHandler = (e) => {
+		if (e.key !== 'Enter') return;
+
+		if (inputValue === '' && !create) {//на пустое поле | только редактирование
 			setError(true);
 			return;
 		};
-		setSaved(true);
+
+		enter.current = true;
+		create ? lostFocusHandler() : e.currentTarget.blur();
 	}
 
 	const lostFocusHandler = () => {
-		if (inputValue === value) return;
-		if (saved) {
+		if (!enter.current && !create) { //сбрасываем и выдаем ошибку если без ввода | только редактирование
+			setInputValue(value);
+			// setError(true);
+			return;
+		};
+		if (!enter.current) return; //выходим если без ввода | только добавление
+		enter.current = false;// сбрасываем триггер
+		if (inputValue !== value || create) { //отправляем данные если был ввод и условия соблюдаются
 			handler(inputValue);
-			return
+			setSaved(true);
+			return;
 		}
-		setInputValue(value);
-		setError(true);
 	}
 
-	useEffect(() => input.current.blur(), [saved])
-
-	useEffect(() => setInputValue(value), [value])
-
-	useEffect(() => {
+	useEffect(() => { //снимаем эффект ошибки и сохранения
 		const timer = setTimeout(() => {
 			setSaved(false);
 			setError(false);
@@ -51,14 +54,13 @@ const EditableCaption = (props) => {
 			className={[
 				styles.input,
 				saved ? styles.saved : null,
-				error ? styles.canceled : null
+				error ? styles.error : null
 			].join(' ')}
-			ref={input}
 			type="text"
 			placeholder={placeholder}
 			onChange={e => setInputValue(e.target.value)}
-			onBlur={() => lostFocusHandler()}
-			onKeyPress={e => e.key === 'Enter' && enterHandler()}
+			onBlur={lostFocusHandler}
+			onKeyPress={keyPressHandler}
 			value={inputValue} />
 	)
 };

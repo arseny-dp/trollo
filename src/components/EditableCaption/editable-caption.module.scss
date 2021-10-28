@@ -13,7 +13,7 @@
 		background-color: rgba($green-secondary, 0.5);
 		transition: background-color 0s;
 	}
-	&.canceled {
+	&.error {
 		background-color: rgba($red-main, 0.2);
 		transition: background-color 0s;
 	}
