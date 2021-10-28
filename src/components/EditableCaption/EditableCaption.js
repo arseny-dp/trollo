@@ -19,7 +19,7 @@ const EditableCaption = (props) => {
 		};
 
 		enter.current = true;
-		edit ? e.currentTarget.blur() : lostFocusHandler();
+		e.currentTarget.blur();
 	}
 
 	const lostFocusHandler = () => {
@@ -31,9 +31,9 @@ const EditableCaption = (props) => {
 
 		enter.current = false;
 
+		setIsSaved(true);
 		if (inputValue !== value || !edit) {
 			handler(inputValue);
-			setIsSaved(true);
 			if (!edit) setInputValue('');
 			return;
 		}

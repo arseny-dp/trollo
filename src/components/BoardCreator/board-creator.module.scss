@@ -1,17 +1,19 @@
-@import 'styles/theme';
+@import "styles/theme";
 
 .body {
 	min-width: 300px;
-	background-color: $green-primary;
-	border: 2px solid $black;
+	border: 1px solid $black;
 }
 .top {
-	border: 1px solid #000;
+	background-color: $green-primary;
 	display: flex;
 	justify-content: center;
 	padding: 20px;
 	cursor: pointer;
 	color: $white;
+	&:hover {
+		background-color: $green-secondary;
+	}
 }
 .icon {
 	margin-right: 10px;
@@ -36,4 +38,21 @@
 .buttons {
 	display: flex;
 	justify-content: space-between;
+	& > * {
+		--button-bg-opacity: 1;
+		padding: 0.1em 1em;
+		border: 1px solid #000;
+		cursor: pointer;
+		// box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+		&:hover {
+			--button-bg-opacity: 0.8;
+		}
+	}
+	.confirm {
+		background-color: rgba($green-primary, var(--button-bg-opacity));
+		color: $white;
+	}
+	.cancel {
+		background-color: rgba($gray-primary, var(--button-bg-opacity));
+	}
 }

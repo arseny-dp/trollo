@@ -14,7 +14,7 @@ const BoardCreator = () => {
 
 	const closeDropdown = () => setIsOpened(false);
 	const clearInput = () => setValue('');
-	const handler = () => {
+	const confirm = () => {
 		dispatch(addBoard(value));
 		clearInput();
 	}
@@ -44,8 +44,20 @@ const BoardCreator = () => {
 						value={value} />
 				</label>
 				<div className={styles.buttons}>
-					<button className='' type='submit' onClick={handler} >Сохранить</button>
-					<button type='reset' onClick={cancel}>Отмена</button>
+					<button
+						className={styles.cancel}
+						type='reset'
+						onClick={cancel}
+					>
+						Отмена
+					</button>
+					<button
+						className={styles.confirm}
+						type='submit'
+						onClick={confirm}
+					>
+						Сохранить
+					</button>
 				</div>
 			</div>
 		</div>

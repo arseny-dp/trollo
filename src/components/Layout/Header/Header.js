@@ -1,7 +1,7 @@
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import styles from './header.module.scss'
+import styles from './header.module.scss';
 
 const Header = () => {
 	return (

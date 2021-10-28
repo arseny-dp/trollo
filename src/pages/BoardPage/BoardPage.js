@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import styles from './board-page.module.scss';
 
 const BoardPage = () => {
+
 	const { id } = useParams();
 
 	return (

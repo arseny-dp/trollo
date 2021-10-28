@@ -44,11 +44,12 @@
 	}
 	.check-icon {
 		position: absolute;
-		right: -2px;
+		right: -10px;
 		top: 50%;
 		transform: translateY(-50%);
 		cursor: pointer;
 		transition: all 0.3s;
+		padding: 8px;
 	}
 	&.done {
 		background-color: $gray-primary;

@@ -8,6 +8,8 @@ import styles from './task-item.module.scss';
 const TaskItem = ({ task, index }) => {
 	const dispatch = useDispatch();
 
+	const toggleHandler = () => dispatch(toggleTask(task.id))
+
 	const getStyle = (style, snapshot) => {
 		if (!(snapshot.draggingOver === 'Delete' && snapshot.isDropAnimating)) {
 			return style;
@@ -38,6 +40,8 @@ const TaskItem = ({ task, index }) => {
 						snapshot.draggingOver === 'Delete' ? styles['drag-over-delete'] : null,
 						snapshot.isDropAnimating ? styles.dropped : null
 					].join(' ')}
+					onDoubleClick={toggleHandler}
+					// onTouchEnd={toggleHandler}
 					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
 					<span className={styles['text-container']}>
@@ -48,7 +52,7 @@ const TaskItem = ({ task, index }) => {
 					</span>
 					<div
 						className={styles['check-icon']}
-						onClick={() => dispatch(toggleTask(task.id))}>
+						onClick={toggleHandler}>
 						<FontAwesomeIcon icon={faCheck} />
 					</div>
 				</div>
