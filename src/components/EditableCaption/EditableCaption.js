@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import styles from './editable-caption.module.scss';
+import cn from "utils/bindedClassNames";
+import styles from './EditableCaption.module.scss';
 
 const EditableCaption = (props) => {
 	const { value, handler, placeholder = '' } = props;
@@ -49,14 +50,13 @@ const EditableCaption = (props) => {
 			clearTimeout(timer);
 		}
 	}, [isSaved, isError])
-
 	return (
 		<input
-			className={[
-				styles.input,
-				isSaved ? styles.saved : null,
-				isError ? styles.error : null
-			].join(' ')}
+			className={cn(styles)({
+				input: true,
+				saved: isSaved,
+				error: isError
+			})}
 			type="text"
 			placeholder={placeholder}
 			onChange={e => setInputValue(e.target.value)}

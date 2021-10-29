@@ -3,10 +3,10 @@
 	display: grid;
 	// gap: 10px;
 	transition: background-color 0.3s;
-	&.dragging-from-this {
+	&.draggingFromThis {
 		background-color: rgba(lightcyan, 0.5);
 	}
-	&.dragging-over {
+	&.draggingOver {
 		background-color: lightcyan;
 	}
 }

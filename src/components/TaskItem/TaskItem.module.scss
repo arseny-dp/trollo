@@ -11,7 +11,7 @@
 	position: relative;
 	margin-bottom: 10px;
 	padding: 5px 20px;
-	.text-container {
+	.textContainer {
 		position: relative;
 		height: 22px;
 		max-width: 100%;
@@ -42,7 +42,7 @@
 			@extend %text-fit;
 		}
 	}
-	.check-icon {
+	.checkIcon {
 		position: absolute;
 		right: -10px;
 		top: 50%;
@@ -53,18 +53,18 @@
 	}
 	&.done {
 		background-color: $gray-primary;
-		.text-container .decore {
+		.textContainer .decore {
 			--rotate: 182deg;
 			&::after {
 				--scaleX: 1;
 			}
 		}
-		.check-icon {
+		.checkIcon {
 			color: $gray-secondary;
 		}
 	}
 }
-.drag-over-delete {
+.dragOverDelete {
 	opacity: 0.8;
 	&.dropped {
 		opacity: 0;

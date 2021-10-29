@@ -1,7 +1,7 @@
 import StoryCaption from "components/StoryCaption";
 import StoryDelete from "components/StoryDelete";
 import TaskList from "components/TaskList";
-import styles from './story-item.module.scss';
+import styles from './StoryItem.module.scss';
 
 const StoryItem = ({ story }) => {
 	return (

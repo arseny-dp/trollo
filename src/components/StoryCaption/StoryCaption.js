@@ -1,7 +1,7 @@
 import { storyRename } from "actions";
 import EditableCaption from "components/EditableCaption";
 import { useDispatch } from "react-redux";
-import styles from './story-caption.module.scss';
+import styles from './StoryCaption.module.scss';
 
 const StoryCaption = ({ story }) => {
 	const dispatch = useDispatch();

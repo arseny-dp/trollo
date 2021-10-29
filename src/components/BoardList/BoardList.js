@@ -1,6 +1,6 @@
 import BoardItem from "components/BoardItem";
 import { useSelector } from "react-redux";
-import styles from './board-list.module.scss';
+import styles from './BoardList.module.scss';
 
 const BoardList = () => {
 	const boards = useSelector(state => state.boards);

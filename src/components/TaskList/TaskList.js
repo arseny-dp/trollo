@@ -2,7 +2,8 @@ import TaskCreator from "components/TaskCreator";
 import TaskItem from "components/TaskItem";
 import useTasksByStory from "hooks/useTasksByStory";
 import { Droppable } from "react-beautiful-dnd";
-import styles from './task-list.module.scss';
+import cn from "utils/bindedClassNames";
+import styles from './TaskList.module.scss';
 
 const TaskList = ({ parentId }) => {
 	const tasks = useTasksByStory(parentId);
@@ -14,11 +15,11 @@ const TaskList = ({ parentId }) => {
 					<>
 						<div
 							ref={provided.innerRef}
-							className={[
-								styles.wrapper,
-								snapshot.isDraggingOver ? styles['dragging-over'] : null,
-								snapshot.draggingFromThisWith ? styles['dragging-from-this'] : null
-							].join(' ')}
+							className={cn(styles)({
+								wrapper: true,
+								draggingOver: snapshot.isDraggingOver,
+								draggingFromThis: snapshot.draggingFromThisWith
+							})}
 							{...provided.droppableProps}
 						>
 							{tasks.map((task, i) =>

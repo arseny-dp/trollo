@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toggleTask } from "actions";
 import { Draggable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import styles from './task-item.module.scss';
+import cn from "utils/bindedClassNames";
+import styles from './TaskItem.module.scss';
 
 const TaskItem = ({ task, index }) => {
 	const dispatch = useDispatch();
 
-	const toggleHandler = () => dispatch(toggleTask(task.id))
+	const toggleHandler = () => dispatch(toggleTask(task.id));
+	window.localStorage.getItem('')
 
 	const getStyle = (style, snapshot) => {
 		if (!(snapshot.draggingOver === 'Delete' && snapshot.isDropAnimating)) {
@@ -34,24 +36,23 @@ const TaskItem = ({ task, index }) => {
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
-					className={[
-						styles.body,
-						task.done ? styles.done : null,
-						snapshot.draggingOver === 'Delete' ? styles['drag-over-delete'] : null,
-						snapshot.isDropAnimating ? styles.dropped : null
-					].join(' ')}
+					className={cn(styles)({
+						body: true,
+						done: task.done,
+						dragOverDelete: snapshot.draggingOver === 'Delete',
+						dropped: snapshot.isDropAnimating
+					})}
 					onDoubleClick={toggleHandler}
-					// onTouchEnd={toggleHandler}
 					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
-					<span className={styles['text-container']}>
+					<span className={styles.textContainer}>
 						<div className={styles.decore} />
 						<div className={styles.text}>
 							{task.name}
 						</div>
 					</span>
 					<div
-						className={styles['check-icon']}
+						className={styles.checkIcon}
 						onClick={toggleHandler}>
 						<FontAwesomeIcon icon={faCheck} />
 					</div>

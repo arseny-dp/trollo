@@ -6,7 +6,7 @@ import useStoriesByBoard from "hooks/useStoriesByBoard";
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
-import styles from './story-list.module.scss';
+import styles from './StoryList.module.scss';
 
 const StoryList = ({ parentId }) => {
 	const dispatch = useDispatch();

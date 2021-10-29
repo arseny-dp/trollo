@@ -4,7 +4,7 @@ import { addBoard } from 'actions';
 import { DEFAULT_BOARD_NAME } from 'constants/defaultNames';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import styles from './board-creator.module.scss';
+import styles from './BoardCreator.module.scss';
 
 const BoardCreator = () => {
 

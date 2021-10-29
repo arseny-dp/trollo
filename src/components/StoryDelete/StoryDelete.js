@@ -2,7 +2,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteStory } from 'actions';
 import { useDispatch } from 'react-redux';
-import styles from './story-delete.module.scss';
+import styles from './StoryDelete.module.scss';
 
 const StoryDelete = ({ id }) => {
 	const dispatch = useDispatch();

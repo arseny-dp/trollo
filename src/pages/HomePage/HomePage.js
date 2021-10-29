@@ -1,6 +1,6 @@
 import BoardCreator from "components/BoardCreator";
 import BoardList from "components/BoardList";
-import styles from './home-page.module.scss';
+import styles from './HomePage.module.scss';
 
 const HomePage = () => {
 

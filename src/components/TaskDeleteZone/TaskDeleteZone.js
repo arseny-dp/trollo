@@ -1,7 +1,8 @@
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Droppable } from "react-beautiful-dnd";
-import styles from './task-delete-zone.module.scss';
+import cn from "utils/bindedClassNames";
+import styles from './TaskDeleteZone.module.scss';
 
 const TaskDeleteZone = ({ show }) => {
 	return (
@@ -9,11 +10,11 @@ const TaskDeleteZone = ({ show }) => {
 			{(provided, snapshot) => (
 				<div
 					ref={provided.innerRef}
-					className={[
-						styles.body,
-						show ? null : styles.hidden,
-						snapshot.isDraggingOver ? styles.active : null
-					].join(' ')}
+					className={cn(styles)({
+						body: true,
+						hidden: !show,
+						active: snapshot.isDraggingOver
+					})}
 					{...provided.droppableProps}
 				>
 					{provided.placeholder}

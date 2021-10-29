@@ -2,7 +2,7 @@ import { boardRename } from "actions";
 import EditableCaption from "components/EditableCaption";
 import useBoardById from "hooks/useBoardById";
 import { useDispatch } from "react-redux";
-import styles from './board-caption.module.scss';
+import styles from './BoardCaption.module.scss';
 
 const BoardCaption = ({ id }) => {
 	const dispatch = useDispatch();

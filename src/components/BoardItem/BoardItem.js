@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deleteBoard } from 'actions';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styles from './board-item.module.scss';
+import styles from './BoardItem.module.scss';
 
 const BoardItem = ({ board }) => {
 	const dispatch = useDispatch();

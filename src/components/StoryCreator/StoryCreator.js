@@ -2,7 +2,7 @@ import { addStory } from "actions";
 import EditableCaption from "components/EditableCaption";
 import { DEFAULT_STORY_NAME } from "constants/defaultNames";
 import { useDispatch } from "react-redux";
-import styles from './story-creator.module.scss';
+import styles from './StoryCreator.module.scss';
 
 const StoryCreator = ({ boardId: parentId }) => {
 	const dispatch = useDispatch();

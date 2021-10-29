@@ -2,7 +2,7 @@ import { addTask } from "actions";
 import EditableCaption from "components/EditableCaption";
 import { DEFAULT_TASK_NAME } from "constants/defaultNames";
 import { useDispatch } from "react-redux";
-import styles from './task-creator.module.scss';
+import styles from './TaskCreator.module.scss';
 
 const TaskCreator = ({ parentId }) => {
 	const dispatch = useDispatch();
