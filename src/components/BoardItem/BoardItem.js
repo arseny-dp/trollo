@@ -1,8 +1,9 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { deleteBoard } from 'actions';
+import { number, shape, string } from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { boardDeleted } from 'store/boardsSlice';
 import styles from './BoardItem.module.scss';
 
 const BoardItem = ({ board }) => {
@@ -12,19 +13,26 @@ const BoardItem = ({ board }) => {
 		<div className={styles.body}>
 			<Link
 				className={styles.link}
-				to={`${board.id}`}
+				to={String(board.id)}
 				title={board.name}
 			>
 				{board.name}
 			</Link>
 			<div
 				className={styles.delete}
-				onClick={() => dispatch(deleteBoard(board.id))}
+				onClick={() => dispatch(boardDeleted(board.id))}
 			>
 				<FontAwesomeIcon icon={faTrash} />
 			</div>
 		</div>
-	)
+	);
+};
+
+BoardItem.propTypes = {
+	board: shape({
+		id: number.isRequired,
+		name: string,
+	}).isRequired
 };
 
 export default BoardItem;

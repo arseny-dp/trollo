@@ -1,17 +1,18 @@
-import { deleteTask, reorderTask } from "actions";
-import StoryCreator from "components/StoryCreator";
-import StoryItem from "components/StoryItem";
-import TaskDeleteZone from "components/TaskDeleteZone";
-import useStoriesByBoard from "hooks/useStoriesByBoard";
-import { useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useDispatch } from "react-redux";
+import StoryCreator from 'components/StoryCreator';
+import StoryItem from 'components/StoryItem';
+import TaskDeleteZone from 'components/TaskDeleteZone';
+import useStoriesByBoard from 'hooks/useStoriesByBoard';
+import { number } from 'prop-types';
+import { useState } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
+import { taskDeleted, tasksReordered } from 'store/tasksSlice';
 import styles from './StoryList.module.scss';
 
 const StoryList = ({ parentId }) => {
 	const dispatch = useDispatch();
 	const [isDraggingNow, setIsDraggingNow] = useState(false);
-	const stories = useStoriesByBoard(parentId)
+	const stories = useStoriesByBoard(parentId);
 
 	const onDragEnd = (result) => {
 		setIsDraggingNow(false);
@@ -23,8 +24,8 @@ const StoryList = ({ parentId }) => {
 
 		const sId = +draggableId;
 
-		if (draggableId === 'Delete') {
-			dispatch(deleteTask(sId));
+		if (destination.droppableId === 'Delete') {
+			dispatch(taskDeleted(sId));
 			return;
 		}
 
@@ -32,10 +33,10 @@ const StoryList = ({ parentId }) => {
 		const dInd = +destination.index;
 
 
-		dispatch(reorderTask(sId, dInd, dest));
+		dispatch(tasksReordered({sId, dInd, dest}));
 	};
 
-	const onDragStart = () => setIsDraggingNow(true)
+	const onDragStart = () => setIsDraggingNow(true);
 
 	return (
 		<>
@@ -52,7 +53,11 @@ const StoryList = ({ parentId }) => {
 				<TaskDeleteZone show={isDraggingNow} />
 			</DragDropContext>
 		</>
-	)
-}
+	);
+};
+
+StoryList.propTypes = {
+	parentId: number.isRequired,
+};
 
 export default StoryList;

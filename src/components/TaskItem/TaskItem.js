@@ -1,16 +1,17 @@
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { toggleTask } from "actions";
-import { Draggable } from "react-beautiful-dnd";
-import { useDispatch } from "react-redux";
-import cn from "utils/bindedClassNames";
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { bool, number, shape, string } from 'prop-types';
+import { Draggable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
+import { taskToggled } from 'store/tasksSlice';
+import cn from 'utils/bindedClassNames';
 import styles from './TaskItem.module.scss';
 
 const TaskItem = ({ task, index }) => {
 	const dispatch = useDispatch();
 
-	const toggleHandler = () => dispatch(toggleTask(task.id));
-	window.localStorage.getItem('')
+	const toggleHandler = () => dispatch(taskToggled(task.id));
+	window.localStorage.getItem('');
 
 	const getStyle = (style, snapshot) => {
 		if (!(snapshot.draggingOver === 'Delete' && snapshot.isDropAnimating)) {
@@ -18,13 +19,13 @@ const TaskItem = ({ task, index }) => {
 		}
 		const { moveTo, duration } = snapshot.dropAnimation;
 		const translate = `translate(calc(${moveTo.x}px - 50%), calc(${moveTo.y}px - 50%))`;
-		const scale = `scale(0.2, 1)`;
+		const scale = 'scale(0.2, 1)';
 		return {
 			...style,
 			transform: `${translate} ${scale}`,
 			transition: `all linear ${duration}s`,
 		};
-	}
+	};
 
 	return (
 		<Draggable
@@ -59,7 +60,16 @@ const TaskItem = ({ task, index }) => {
 				</div>
 			)}
 		</Draggable>
-	)
-}
+	);
+};
+
+TaskItem.propTypes = {
+	task: shape({
+		id: number.isRequired,
+		name: string,
+		done: bool
+	}).isRequired,
+	index: number
+};
 
 export default TaskItem;
