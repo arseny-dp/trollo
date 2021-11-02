@@ -1,5 +1,5 @@
-import BoardCreator from "components/BoardCreator";
-import BoardList from "components/BoardList";
+import BoardCreator from 'components/BoardCreator';
+import BoardList from 'components/BoardList';
 import styles from './HomePage.module.scss';
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
 			<BoardCreator />
 			<BoardList />
 		</div>
-	)
-}
+	);
+};
 
 export default HomePage;

@@ -1,3 +1,3 @@
-import TaskDeleteZone from "./TaskDeleteZone";
+import TaskDeleteZone from './TaskDeleteZone';
 
 export default TaskDeleteZone;

@@ -1,3 +1,3 @@
-import StoryDelete from "./StoryDelete";
+import StoryDelete from './StoryDelete';
 
 export default StoryDelete;

@@ -1,3 +1,3 @@
-import EditableCaption from "./EditableCaption";
+import EditableCaption from './EditableCaption';
 
 export default EditableCaption;

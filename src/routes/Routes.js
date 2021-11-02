@@ -15,6 +15,6 @@ const Routes = () =>
 		<Route path='/' exact>
 			<Redirect to='/boards/' />
 		</Route>
-	</>
+	</>;
 
 export default Routes;

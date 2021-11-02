@@ -1,11 +1,16 @@
-import styles from './Layout.module.scss'
+import { node } from 'prop-types';
+import styles from './Layout.module.scss';
 
-const Layout = (props) => {
+const Layout = ({ children }) => {
 	return (
 		<div className={styles.body}>
-			{props.children}
+			{children}
 		</div>
-	)
+	);
+};
+
+Layout.propTypes = {
+	children: node
 };
 
 export default Layout;

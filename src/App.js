@@ -1,8 +1,8 @@
 // import ErrorBoundary from "components/ErrorBoundry";
-import Layout from "components/Layout";
-import Header from "components/Layout/Header";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Routes from "routes";
+import Layout from 'components/Layout';
+import Header from 'components/Layout/Header';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Routes from 'routes';
 
 const App = () => {
 	return (
@@ -18,7 +18,7 @@ const App = () => {
 			</Router>
 			{/* </ErrorBoundary> */}
 		</>
-	)
-}
+	);
+};
 
 export default App;

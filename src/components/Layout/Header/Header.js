@@ -1,6 +1,6 @@
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
 				<FontAwesomeIcon className={styles.icon} icon={faHome} size="2x" />
 			</Link>
 		</div>
-	)
+	);
 };
 
 export default Header;

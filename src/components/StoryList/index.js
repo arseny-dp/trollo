@@ -1,3 +1,3 @@
-import StoryList from "./StoryList";
+import StoryList from './StoryList';
 
 export default StoryList;

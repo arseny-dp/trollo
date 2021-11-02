@@ -1,6 +1,6 @@
-import BoardCaption from "components/BoardCaption";
-import StoryList from "components/StoryList";
-import { useParams } from "react-router";
+import BoardCaption from 'components/BoardCaption';
+import StoryList from 'components/StoryList';
+import { useParams } from 'react-router';
 import styles from './BoardPage.module.scss';
 
 const BoardPage = () => {

@@ -1,5 +1,5 @@
-const { library } = require("@fortawesome/fontawesome-svg-core");
-const { far } = require("@fortawesome/free-regular-svg-icons");
-const { faPlusSquare } = require("@fortawesome/free-solid-svg-icons");
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faPlusSquare, far);

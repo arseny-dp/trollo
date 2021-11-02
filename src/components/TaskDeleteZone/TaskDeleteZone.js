@@ -1,7 +1,8 @@
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Droppable } from "react-beautiful-dnd";
-import cn from "utils/bindedClassNames";
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { bool } from 'prop-types';
+import { Droppable } from 'react-beautiful-dnd';
+import cn from 'utils/bindedClassNames';
 import styles from './TaskDeleteZone.module.scss';
 
 const TaskDeleteZone = ({ show }) => {
@@ -26,7 +27,11 @@ const TaskDeleteZone = ({ show }) => {
 			)}
 
 		</Droppable>
-	)
-}
+	);
+};
+
+TaskDeleteZone.propTypes = {
+	show: bool.isRequired,
+};
 
 export default TaskDeleteZone;

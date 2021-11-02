@@ -1,8 +1,9 @@
-import TaskCreator from "components/TaskCreator";
-import TaskItem from "components/TaskItem";
-import useTasksByStory from "hooks/useTasksByStory";
-import { Droppable } from "react-beautiful-dnd";
-import cn from "utils/bindedClassNames";
+import TaskCreator from 'components/TaskCreator';
+import TaskItem from 'components/TaskItem';
+import useTasksByStory from 'hooks/useTasksByStory';
+import { number } from 'prop-types';
+import { Droppable } from 'react-beautiful-dnd';
+import cn from 'utils/bindedClassNames';
 import styles from './TaskList.module.scss';
 
 const TaskList = ({ parentId }) => {
@@ -35,7 +36,11 @@ const TaskList = ({ parentId }) => {
 				)}
 			</Droppable>
 		</>
-	)
-}
+	);
+};
 
-export default TaskList
+TaskList.propTypes = {
+	parentId: number.isRequired,
+};
+
+export default TaskList;

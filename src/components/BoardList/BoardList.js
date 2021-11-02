@@ -1,5 +1,5 @@
-import BoardItem from "components/BoardItem";
-import { useSelector } from "react-redux";
+import BoardItem from 'components/BoardItem';
+import { useSelector } from 'react-redux';
 import styles from './BoardList.module.scss';
 
 const BoardList = () => {
@@ -11,7 +11,7 @@ const BoardList = () => {
 				<BoardItem key={e.id} board={e} />
 			)}
 		</div>
-	)
+	);
 };
 
 export default BoardList;

@@ -1,3 +1,3 @@
-import TaskItem from "./TaskItem";
+import TaskItem from './TaskItem';
 
 export default TaskItem;

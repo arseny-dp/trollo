@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import cn from "utils/bindedClassNames";
+import { func, string } from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+import cn from 'utils/bindedClassNames';
 import styles from './EditableCaption.module.scss';
 
 const EditableCaption = (props) => {
@@ -17,18 +18,18 @@ const EditableCaption = (props) => {
 		if (inputValue === '' && edit) {
 			setIsError(true);
 			return;
-		};
+		}
 
 		enter.current = true;
 		e.currentTarget.blur();
-	}
+	};
 
 	const lostFocusHandler = () => {
 		if (!enter.current) {
 			if (edit) setInputValue(value);
 			// setError(true);
 			return;
-		};
+		}
 
 		enter.current = false;
 
@@ -38,7 +39,7 @@ const EditableCaption = (props) => {
 			if (!edit) setInputValue('');
 			return;
 		}
-	}
+	};
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -48,8 +49,8 @@ const EditableCaption = (props) => {
 
 		return () => {
 			clearTimeout(timer);
-		}
-	}, [isSaved, isError])
+		};
+	}, [isSaved, isError]);
 	return (
 		<input
 			className={cn(styles)({
@@ -63,7 +64,13 @@ const EditableCaption = (props) => {
 			onBlur={lostFocusHandler}
 			onKeyPress={keyPressHandler}
 			value={inputValue} />
-	)
+	);
+};
+
+EditableCaption.propTypes = {
+	handler: func.isRequired,
+	value: string,
+	placeholder: string
 };
 
 export default EditableCaption;

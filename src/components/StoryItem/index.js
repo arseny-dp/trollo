@@ -1,3 +1,3 @@
-import StoryItem from "./StoryItem";
+import StoryItem from './StoryItem';
 
 export default StoryItem;

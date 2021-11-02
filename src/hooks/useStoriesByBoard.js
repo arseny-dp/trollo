@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const useStoriesByBoard = (id) => {
 	const stories = useSelector(({ stories }) => {
@@ -7,10 +7,10 @@ const useStoriesByBoard = (id) => {
 			({ parentId }) => parentId === id
 		);
 
-		return filteredStories
+		return filteredStories;
 	});
 
 	return stories;
-}
+};
 
-export default useStoriesByBoard
+export default useStoriesByBoard;

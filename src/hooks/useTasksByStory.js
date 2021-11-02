@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const useTasksByStory = (id) => {
 	const tasks = useSelector(({ tasks }) => {
@@ -7,10 +7,10 @@ const useTasksByStory = (id) => {
 			({ parentId }) => parentId === id
 		);
 
-		return filteredTasks
+		return filteredTasks;
 	});
 
 	return tasks;
-}
+};
 
-export default useTasksByStory
+export default useTasksByStory;

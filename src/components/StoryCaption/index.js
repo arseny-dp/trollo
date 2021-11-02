@@ -1,3 +1,3 @@
-import StoryCaption from "./StoryCaption";
+import StoryCaption from './StoryCaption';
 
 export default StoryCaption;

@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const useBoardById = (boardId) => {
 
@@ -8,10 +8,10 @@ const useBoardById = (boardId) => {
 			({ id }) => id === boardId
 		);
 
-		return board
+		return board;
 	});
 
 	return board;
-}
+};
 
-export default useBoardById
+export default useBoardById;
